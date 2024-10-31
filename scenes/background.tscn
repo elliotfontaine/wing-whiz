@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgpx1hv1uwe30"]
+
+[ext_resource type="Texture2D" uid="uid://dyak1qoo7bl2a" path="res://assets/background_day.png" id="1_xh4a4"]
+[ext_resource type="Script" path="res://scenes/background.gd" id="2_j82ui"]
+
+[node name="Background" type="Sprite2D"]
+scale = Vector2(2.82639, 2.82639)
+texture = ExtResource("1_xh4a4")
+centered = false
+script = ExtResource("2_j82ui")

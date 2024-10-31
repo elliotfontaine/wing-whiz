@@ -1,0 +1,63 @@
+[gd_scene load_steps=11 format=3 uid="uid://dxrvyg2gkpkyn"]
+
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_56565"]
+[ext_resource type="Texture2D" uid="uid://d2so556demrkm" path="res://assets/bird_atlas.png" id="2_754vd"]
+[ext_resource type="AudioStream" uid="uid://dg6gfdbu0jwpb" path="res://assets/audio/hit.wav" id="3_2qb7c"]
+[ext_resource type="AudioStream" uid="uid://fqgg30tx1g33" path="res://assets/audio/wing.wav" id="4_jbv00"]
+[ext_resource type="AudioStream" uid="uid://b8bvle7ivsiyn" path="res://assets/audio/die.wav" id="5_px118"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cukm3"]
+radius = 7.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdcwr"]
+atlas = ExtResource("2_754vd")
+region = Rect2(0, 0, 19, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ki6an"]
+atlas = ExtResource("2_754vd")
+region = Rect2(0, 14, 19, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ra6ap"]
+atlas = ExtResource("2_754vd")
+region = Rect2(0, 28, 19, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3htqr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdcwr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ki6an")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ra6ap")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(102, 77)
+scale = Vector2(5, 5)
+collision_mask = 6
+script = ExtResource("1_56565")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cukm3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3htqr")
+frame_progress = 0.161515
+speed_scale = 1.5
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2qb7c")
+
+[node name="FlapSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jbv00")
+max_polyphony = 10
+
+[node name="DieSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_px118")

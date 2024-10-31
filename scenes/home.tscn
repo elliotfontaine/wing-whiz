@@ -1,0 +1,107 @@
+[gd_scene load_steps=10 format=3 uid="uid://qepiltkccigy"]
+
+[ext_resource type="Script" path="res://scenes/home.gd" id="1_3v128"]
+[ext_resource type="PackedScene" uid="uid://bgpx1hv1uwe30" path="res://scenes/background.tscn" id="3_jun4f"]
+[ext_resource type="Texture2D" uid="uid://bpcrkcvc4as1w" path="res://assets/ground.png" id="4_7m3cv"]
+[ext_resource type="PackedScene" uid="uid://dxrvyg2gkpkyn" path="res://scenes/player.tscn" id="5_6675b"]
+[ext_resource type="Texture2D" uid="uid://y7jnv7r1ort7" path="res://assets/ui/buttons/play_button.png" id="5_r0jhf"]
+[ext_resource type="Texture2D" uid="uid://0de2oh1gnt4t" path="res://assets/ui/buttons/leaderboard_button.png" id="6_4pxt4"]
+[ext_resource type="Texture2D" uid="uid://tbr6cp3qnvkq" path="res://assets/ui/buttons/rate_button.png" id="7_djrg7"]
+[ext_resource type="Texture2D" uid="uid://cvqtanw04ylu4" path="res://assets/ui/titles/flappy_bird_title.png" id="8_ytqou"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4d76a"]
+size = Vector2(1052, 304.625)
+
+[node name="Home" type="Node"]
+script = ExtResource("1_3v128")
+
+[node name="Background" parent="." instance=ExtResource("3_jun4f")]
+unique_name_in_owner = true
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(459, 1257)
+collision_layer = 4
+collision_priority = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("RectangleShape2D_4d76a")
+
+[node name="TextureRect" type="TextureRect" parent="Ground"]
+offset_left = -460.0
+offset_top = -152.0
+offset_right = -292.0
+offset_bottom = -96.0
+scale = Vector2(5, 5)
+texture = ExtResource("4_7m3cv")
+
+[node name="Player" parent="." instance=ExtResource("5_6675b")]
+unique_name_in_owner = true
+position = Vector2(360, 608)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.741406
+anchor_right = 0.5
+anchor_bottom = 0.741406
+offset_left = -287.0
+offset_top = -221.0
+offset_right = 291.0
+offset_bottom = 143.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="PlayButton" type="TextureButton" parent="UI/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 120)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_stretch_ratio = 0.0
+focus_mode = 0
+texture_normal = ExtResource("5_r0jhf")
+stretch_mode = 5
+
+[node name="ScoreboardButton" type="TextureButton" parent="UI/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(240, 120)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_stretch_ratio = 0.0
+focus_mode = 0
+texture_normal = ExtResource("6_4pxt4")
+stretch_mode = 5
+
+[node name="RateButton" type="TextureButton" parent="UI/VBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("7_djrg7")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Title" type="TextureRect" parent="UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 214.0
+offset_right = 300.0
+offset_bottom = 358.0
+grow_horizontal = 2
+texture = ExtResource("8_ytqou")
