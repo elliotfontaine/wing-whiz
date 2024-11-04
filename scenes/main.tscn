@@ -46,6 +46,7 @@ debug_color = Color(0.967268, 0, 0.475328, 0.42)
 
 [node name="Ground" parent="." instance=ExtResource("4_tqol2")]
 unique_name_in_owner = true
+scroll_offset = Vector2(0, 1424)
 
 [node name="Player" parent="." instance=ExtResource("1_ytolg")]
 unique_name_in_owner = true

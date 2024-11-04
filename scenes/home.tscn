@@ -14,11 +14,12 @@ script = ExtResource("1_3v128")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
-offset = Vector2(360, 640)
+anchor_mode = 0
 
 [node name="Background" parent="." instance=ExtResource("3_jun4f")]
 
 [node name="Ground" parent="." instance=ExtResource("3_ke246")]
+scroll_offset = Vector2(0, 1424)
 
 [node name="Player" parent="." instance=ExtResource("5_6675b")]
 unique_name_in_owner = true
