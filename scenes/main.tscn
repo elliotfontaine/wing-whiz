@@ -25,7 +25,6 @@ shadow_offset = Vector2(0, 0)
 [node name="Main" type="Node"]
 script = ExtResource("1_lnjsm")
 obstacle_scene = ExtResource("2_iu102")
-obstacle_speed = 7
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
