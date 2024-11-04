@@ -19,9 +19,14 @@ var score: int = 0:
 @onready var title: TextureRect = %Title
 @onready var timer: Timer = %Timer
 @onready var pause_button: TextureButton = %PauseButton
-@onready var background: Sprite2D = %Background
 @onready var game_over_menu: Control = %GameOverMenu
-@onready var point_sound: AudioStreamPlayer = $PointSound
+@onready var point_sound: AudioStreamPlayer = %PointSound
+@onready var camera: Camera2D = %Camera2D
+@onready var ground_body: StaticBody2D = $GroundSB2D
+@onready var background: Node2D = %Background
+
+@onready var camera_player_offset = camera.position.x - player.position.x
+@onready var States = player.States
 
 func _ready() -> void:
 	timer.wait_time = 6.0/obstacle_speed
@@ -31,15 +36,19 @@ func _ready() -> void:
 	pause_button.modulate.a = 0
 	score_label.modulate.a = 0
 
+func _notification(what: int):
+	if what == NOTIFICATION_APPLICATION_FOCUS_OUT and player.state == States.FLYING:
+		get_tree().paused = true
+
+func _on_pause_pressed() -> void:
+	get_tree().paused = !get_tree().paused
+
 func _physics_process(delta: float) -> void:
+	ground_body.position.x = player.position.x
 	if player.state in [player.States.READY, player.States.FLYING]:
-		# Move obstacles to the left
-		$Ground/TextureRect.position.x -= obstacle_speed*delta*60
-		if $Ground/TextureRect.position.x <= -580: # EEeew ! Dirty.
-			$Ground/TextureRect.position.x = -460
+		player.position.x += obstacle_speed*delta*60
+		camera.position.x = player.position.x + camera_player_offset
 	if player.state == player.States.FLYING:
-		for obstacle in obstacles:
-			obstacle.position.x -= obstacle_speed*delta*60
 		# Check if the player passed an obstacle
 		var next_obstacle: Node2D = upcoming_obstacles.front()
 		if next_obstacle and next_obstacle.position.x <= player.position.x:
@@ -49,33 +58,29 @@ func _physics_process(delta: float) -> void:
 
 func clean_obstacles() -> void:
 	var oldest_obstacle: Node2D = obstacles.front()
-	if oldest_obstacle and oldest_obstacle.position.x < -500:
+	if oldest_obstacle and oldest_obstacle.position.x - player.position.x < -1000.0:
+		print("delete ", oldest_obstacle)
 		obstacles.pop_front()
 		oldest_obstacle.queue_free()
 
 func spawn_obstacle() -> void:
 	var new_obstacle = obstacle_scene.instantiate()
-	background.add_sibling(new_obstacle)
+	ground_body.add_sibling(new_obstacle)
 	obstacles.append(new_obstacle)
 	upcoming_obstacles.append(new_obstacle)
-	new_obstacle.position.x = 1500.0
+	new_obstacle.position.x = player.position.x + 1500.0
 	new_obstacle.position.y = randf_range(obstacle_y_min, obstacle_y_max)
-
-func _on_pause_pressed() -> void:
-	get_tree().paused = !get_tree().paused
+	new_obstacle.modulate.a = 0
+	create_tween().tween_property(new_obstacle, "modulate:a", 1.0, 0.3)
 
 func _on_player_state_changed(new_state) -> void:
-	var States = player.States
-	#var pause_tween: Tween = create_tween()
 	match new_state:
 		States.FLYING:
 			spawn_obstacle()
 			create_tween().tween_property(pause_button, "modulate:a", 1.0, 0.2)
 			create_tween().tween_property(score_label, "modulate:a", 1.0, 0.2)
 			create_tween().tween_property(title, "modulate:a", 0.0, 0.2)
-			create_tween().tween_property(
-				title, "position:y", title.position.y-40, 0.2
-			)
+			create_tween().tween_property(title, "position:y", title.position.y-40, 0.2)
 			timer.start()
 		States.DEAD:
 			timer.stop()
@@ -84,4 +89,3 @@ func _on_player_state_changed(new_state) -> void:
 			game_over_menu.appear(score, best_score)
 			if score > best_score:
 				SaveManager.best_score = score
-		

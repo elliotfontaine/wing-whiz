@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://sr2vyno2c7su"]
 
-[ext_resource type="Texture2D" uid="uid://b5qdug73bs3ey" path="res://assets/pipe_down.png" id="1_qbswn"]
-[ext_resource type="Texture2D" uid="uid://b6ecnigwqc2kl" path="res://assets/pipe_up.png" id="2_ok2io"]
+[ext_resource type="Texture2D" uid="uid://0gv6uu7hfcyq" path="res://assets/environment/pipes/down_green.png" id="1_qbswn"]
+[ext_resource type="Texture2D" uid="uid://vs6f0p1r0bt1" path="res://assets/environment/pipes/up_green.png" id="2_ihbag"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_foxxc"]
-size = Vector2(22, 158)
+size = Vector2(28, 159)
 
 [node name="Obstacle" type="Node2D"]
 position = Vector2(562, 214)
@@ -14,18 +14,22 @@ scale = Vector2(5, 5)
 position = Vector2(0, -110)
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PipeDown"]
-shape = SubResource("RectangleShape2D_foxxc")
-
 [node name="Sprite2D" type="Sprite2D" parent="PipeDown"]
 texture = ExtResource("1_qbswn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PipeDown"]
+position = Vector2(0, -0.5)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_foxxc")
 
 [node name="PipeUp" type="StaticBody2D" parent="."]
 position = Vector2(0, 110)
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PipeUp"]
-shape = SubResource("RectangleShape2D_foxxc")
-
 [node name="Sprite2D" type="Sprite2D" parent="PipeUp"]
-texture = ExtResource("2_ok2io")
+texture = ExtResource("2_ihbag")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PipeUp"]
+position = Vector2(0, 0.625015)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_foxxc")

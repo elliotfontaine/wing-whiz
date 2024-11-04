@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_lnjsm"]
 [ext_resource type="PackedScene" uid="uid://dxrvyg2gkpkyn" path="res://scenes/player.tscn" id="1_ytolg"]
 [ext_resource type="PackedScene" uid="uid://sr2vyno2c7su" path="res://scenes/obstacle.tscn" id="2_iu102"]
-[ext_resource type="PackedScene" uid="uid://bgpx1hv1uwe30" path="res://scenes/background.tscn" id="3_20bfv"]
-[ext_resource type="Texture2D" uid="uid://bpcrkcvc4as1w" path="res://assets/ground.png" id="3_aqwh4"]
+[ext_resource type="PackedScene" uid="uid://cni3ljkwupbfc" path="res://scenes/background.tscn" id="3_20bfv"]
+[ext_resource type="PackedScene" uid="uid://c8aab5lythc2" path="res://scenes/ground.tscn" id="4_tqol2"]
 [ext_resource type="Texture2D" uid="uid://1mx1dhexyro4" path="res://assets/ui/buttons/pause_button.png" id="6_shwit"]
 [ext_resource type="FontFile" uid="uid://cu8aacyl5o2xw" path="res://assets/ui/font/flappy-font.ttf" id="6_us5qp"]
 [ext_resource type="Texture2D" uid="uid://qrw2nlb04f7x" path="res://assets/ui/buttons/pause_button_pressed.png" id="7_evylj"]
@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://bv3pqb5o4d7t" path="res://assets/audio/point.wav" id="10_lj236"]
 [ext_resource type="Texture2D" uid="uid://pe8e1rd34ld0" path="res://assets/ui/titles/get_ready_title.png" id="10_sc6a6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4d76a"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iajk3"]
 size = Vector2(1052, 304.625)
 
 [sub_resource type="LabelSettings" id="LabelSettings_tq3rl"]
@@ -25,45 +25,36 @@ shadow_offset = Vector2(0, 0)
 [node name="Main" type="Node"]
 script = ExtResource("1_lnjsm")
 obstacle_scene = ExtResource("2_iu102")
-obstacle_speed = 8
+obstacle_speed = 7
+
+[node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+anchor_mode = 0
 
 [node name="Background" parent="." instance=ExtResource("3_20bfv")]
 unique_name_in_owner = true
 
-[node name="Ground" type="StaticBody2D" parent="."]
+[node name="GroundSB2D" type="StaticBody2D" parent="."]
 position = Vector2(459, 1257)
 collision_layer = 4
 collision_priority = 10.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
-shape = SubResource("RectangleShape2D_4d76a")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundSB2D"]
+shape = SubResource("RectangleShape2D_iajk3")
+debug_color = Color(0.967268, 0, 0.475328, 0.42)
 
-[node name="TextureRect" type="TextureRect" parent="Ground"]
-offset_left = -460.0
-offset_top = -152.0
-offset_right = -292.0
-offset_bottom = -96.0
-scale = Vector2(5, 5)
-texture = ExtResource("3_aqwh4")
+[node name="Ground" parent="." instance=ExtResource("4_tqol2")]
+unique_name_in_owner = true
 
 [node name="Player" parent="." instance=ExtResource("1_ytolg")]
 unique_name_in_owner = true
 position = Vector2(212, 599)
 
-[node name="UI" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -2.0
-offset_right = -2.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
+[node name="UI" type="CanvasLayer" parent="."]
 
 [node name="ScoreLabel" type="Label" parent="UI"]
 unique_name_in_owner = true
-layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -79,8 +70,6 @@ horizontal_alignment = 1
 [node name="PauseButton" type="TextureButton" parent="UI"]
 unique_name_in_owner = true
 process_mode = 3
-layout_mode = 1
-anchors_preset = -1
 offset_right = -71.6
 offset_bottom = -76.0
 scale = Vector2(5, 5)
@@ -95,13 +84,11 @@ stretch_mode = 5
 [node name="GameOverMenu" parent="UI" instance=ExtResource("9_v8y3l")]
 unique_name_in_owner = true
 visible = false
-layout_mode = 1
 offset_left = 2.0
 offset_right = 2.0
 
 [node name="Title" type="TextureRect" parent="UI"]
 unique_name_in_owner = true
-layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -117,5 +104,8 @@ unique_name_in_owner = true
 process_callback = 0
 
 [node name="PointSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("10_lj236")
 volume_db = -5.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]

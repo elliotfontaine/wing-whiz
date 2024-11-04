@@ -1,41 +1,67 @@
-[gd_scene load_steps=11 format=3 uid="uid://dxrvyg2gkpkyn"]
+[gd_scene load_steps=14 format=3 uid="uid://dxrvyg2gkpkyn"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_56565"]
-[ext_resource type="Texture2D" uid="uid://d2so556demrkm" path="res://assets/bird_atlas.png" id="2_754vd"]
+[ext_resource type="Texture2D" uid="uid://c8pnuva8msjmx" path="res://assets/player/bird_yellow.png" id="2_4m7os"]
 [ext_resource type="AudioStream" uid="uid://dg6gfdbu0jwpb" path="res://assets/audio/hit.wav" id="3_2qb7c"]
 [ext_resource type="AudioStream" uid="uid://fqgg30tx1g33" path="res://assets/audio/wing.wav" id="4_jbv00"]
 [ext_resource type="AudioStream" uid="uid://b8bvle7ivsiyn" path="res://assets/audio/die.wav" id="5_px118"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cukm3"]
-radius = 7.0
+radius = 6.4
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xdcwr"]
-atlas = ExtResource("2_754vd")
-region = Rect2(0, 0, 19, 14)
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdxyb"]
+atlas = ExtResource("2_4m7os")
+region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ki6an"]
-atlas = ExtResource("2_754vd")
-region = Rect2(0, 14, 19, 14)
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vfxr"]
+atlas = ExtResource("2_4m7os")
+region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ra6ap"]
-atlas = ExtResource("2_754vd")
-region = Rect2(0, 28, 19, 14)
+[sub_resource type="AtlasTexture" id="AtlasTexture_qeen7"]
+atlas = ExtResource("2_4m7os")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbu6c"]
+atlas = ExtResource("2_4m7os")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vd4px"]
+atlas = ExtResource("2_4m7os")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkd6g"]
+atlas = ExtResource("2_4m7os")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3htqr"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xdcwr")
+"texture": SubResource("AtlasTexture_rdxyb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ki6an")
+"texture": SubResource("AtlasTexture_1vfxr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ra6ap")
+"texture": SubResource("AtlasTexture_qeen7")
+}],
+"loop": true,
+"name": &"alt",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbu6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vd4px")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkd6g")
 }],
 "loop": true,
 "name": &"default",
-"speed": 10.0
+"speed": 6.0
 }]
 
 [node name="Player" type="CharacterBody2D"]
@@ -49,7 +75,6 @@ shape = SubResource("CircleShape2D_cukm3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3htqr")
-frame_progress = 0.161515
 speed_scale = 1.5
 
 [node name="HitSound" type="AudioStreamPlayer" parent="."]

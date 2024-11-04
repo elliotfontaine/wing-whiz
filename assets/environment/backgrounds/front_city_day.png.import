@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2so556demrkm"
-path="res://.godot/imported/bird_atlas.png-1fa3b7d98f8b8f917bbacaad5184a4ac.ctex"
+uid="uid://ctw4l8w8cn2i5"
+path="res://.godot/imported/front_city_day.png-8dfc5267df68e455f0ca35d8f3f0dd8e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bird_atlas.png"
-dest_files=["res://.godot/imported/bird_atlas.png-1fa3b7d98f8b8f917bbacaad5184a4ac.ctex"]
+source_file="res://assets/environment/backgrounds/front_city_day.png"
+dest_files=["res://.godot/imported/front_city_day.png-8dfc5267df68e455f0ca35d8f3f0dd8e.ctex"]
 
 [params]
 

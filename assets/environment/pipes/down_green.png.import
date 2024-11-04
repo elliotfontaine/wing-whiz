@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyak1qoo7bl2a"
-path="res://.godot/imported/background_day.png-a7104a5a23b57b43b21fc42622fc08c4.ctex"
+uid="uid://0gv6uu7hfcyq"
+path="res://.godot/imported/down_green.png-b063069ba37854621295d3d428ad39ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/background_day.png"
-dest_files=["res://.godot/imported/background_day.png-a7104a5a23b57b43b21fc42622fc08c4.ctex"]
+source_file="res://assets/environment/pipes/down_green.png"
+dest_files=["res://.godot/imported/down_green.png-b063069ba37854621295d3d428ad39ff.ctex"]
 
 [params]
 

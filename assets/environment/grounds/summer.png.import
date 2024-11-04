@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6ecnigwqc2kl"
-path="res://.godot/imported/pipe_up.png-8396a38cfadb4fc6dbc6c6f18e0f9754.ctex"
+uid="uid://c1ukkw635vrel"
+path="res://.godot/imported/summer.png-183b695b5e44832b07260bac3127d70d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/pipe_up.png"
-dest_files=["res://.godot/imported/pipe_up.png-8396a38cfadb4fc6dbc6c6f18e0f9754.ctex"]
+source_file="res://assets/environment/grounds/summer.png"
+dest_files=["res://.godot/imported/summer.png-183b695b5e44832b07260bac3127d70d.ctex"]
 
 [params]
 

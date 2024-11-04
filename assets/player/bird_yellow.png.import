@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2jlv67t7twll"
-path="res://.godot/imported/background_night.png-4f5f69f76a399692df0cea1903fb6324.ctex"
+uid="uid://c8pnuva8msjmx"
+path="res://.godot/imported/bird_yellow.png-b65b04b4f4b9d003808a42ecbc9e20a8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/background_night.png"
-dest_files=["res://.godot/imported/background_night.png-4f5f69f76a399692df0cea1903fb6324.ctex"]
+source_file="res://assets/player/bird_yellow.png"
+dest_files=["res://.godot/imported/bird_yellow.png-b65b04b4f4b9d003808a42ecbc9e20a8.ctex"]
 
 [params]
 

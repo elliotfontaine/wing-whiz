@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chn1w8ia5rcea"
-path="res://.godot/imported/Flappy Bird Sprites.png-0c1605c2f064864306b709e3d7549373.ctex"
+uid="uid://ds78iratopkcx"
+path="res://.godot/imported/sky_day.png-4aadd80b94f8c1754f1a32f0842b207d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Flappy Bird Sprites.png"
-dest_files=["res://.godot/imported/Flappy Bird Sprites.png-0c1605c2f064864306b709e3d7549373.ctex"]
+source_file="res://assets/environment/backgrounds/sky_day.png"
+dest_files=["res://.godot/imported/sky_day.png-4aadd80b94f8c1754f1a32f0842b207d.ctex"]
 
 [params]
 

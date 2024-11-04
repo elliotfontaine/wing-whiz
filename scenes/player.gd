@@ -45,15 +45,16 @@ func _physics_process(delta: float):
 		States.AUTO:
 			apply_gravity(gravity, delta)
 			move_and_collide(velocity)
-			if position.y > 600:
+			if position.y > 700:
 				flap(flap_strength/1.5, delta)
-			if position.y > 400 and randf() > 0.95:
+			if position.y > 400 and randf() > 0.97:
 				flap(flap_strength/1.5, delta)
 
 func flap(strength: float, delta: float) -> void:
 	velocity.y = - strength * delta
 	animated_sprite.rotation = FLAP_ANGLE
-	flap_sound.play()
+	if state != States.AUTO:
+		flap_sound.play()
 
 func apply_gravity(g: float, delta: float) -> void:
 	velocity.y += g * delta
@@ -69,8 +70,8 @@ func _set_state(new_state: States) -> void:
 	match new_state:
 		States.READY:
 			animated_sprite.play()
-			ready_tween.tween_property(self, "position:y", position.y - 50, 1.0)
-			ready_tween.tween_property(self, "position:y", position.y, 1.0)
+			ready_tween.tween_property(self, "position:y", position.y - 20, 0.5)
+			ready_tween.tween_property(self, "position:y", position.y, 0.5)
 			collision_mask = 0
 		States.FLYING:
 			animated_sprite.play()

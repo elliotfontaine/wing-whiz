@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8aab5lythc2"]
+
+[ext_resource type="Texture2D" uid="uid://c1ukkw635vrel" path="res://assets/environment/grounds/summer.png" id="1_lk1j1"]
+
+[node name="Ground" type="Node2D"]
+
+[node name="GroundParallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1, 0)
+repeat_size = Vector2(3280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="GroundParallax2D"]
+position = Vector2(1561, 1425)
+scale = Vector2(5, 5)
+texture = ExtResource("1_lk1j1")
