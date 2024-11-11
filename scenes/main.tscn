@@ -1,26 +1,17 @@
-[gd_scene load_steps=14 format=3 uid="uid://d0cs0u7t84vpp"]
+[gd_scene load_steps=11 format=3 uid="uid://d0cs0u7t84vpp"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_lnjsm"]
 [ext_resource type="PackedScene" uid="uid://dxrvyg2gkpkyn" path="res://scenes/player.tscn" id="1_ytolg"]
 [ext_resource type="PackedScene" uid="uid://sr2vyno2c7su" path="res://scenes/obstacle.tscn" id="2_iu102"]
 [ext_resource type="PackedScene" uid="uid://cni3ljkwupbfc" path="res://scenes/background.tscn" id="3_20bfv"]
 [ext_resource type="PackedScene" uid="uid://c8aab5lythc2" path="res://scenes/ground.tscn" id="4_tqol2"]
-[ext_resource type="Texture2D" uid="uid://1mx1dhexyro4" path="res://assets/ui/buttons/pause_button.png" id="6_shwit"]
-[ext_resource type="FontFile" uid="uid://cu8aacyl5o2xw" path="res://assets/ui/font/flappy-font.ttf" id="6_us5qp"]
-[ext_resource type="Texture2D" uid="uid://qrw2nlb04f7x" path="res://assets/ui/buttons/pause_button_pressed.png" id="7_evylj"]
-[ext_resource type="PackedScene" uid="uid://bau0ceijodblo" path="res://scenes/game_over_menu.tscn" id="9_v8y3l"]
+[ext_resource type="Texture2D" uid="uid://c8e3umou1ee1p" path="res://assets/ui/buttons/pause_icon.png" id="6_8bg8p"]
+[ext_resource type="Texture2D" uid="uid://dppvmxfo8dovd" path="res://assets/ui/titles/get_ready.png" id="7_hagmp"]
+[ext_resource type="PackedScene" uid="uid://1g3xfajskdtr" path="res://scenes/game_over_menu.tscn" id="9_v8y3l"]
 [ext_resource type="AudioStream" uid="uid://bv3pqb5o4d7t" path="res://assets/audio/point.wav" id="10_lj236"]
-[ext_resource type="Texture2D" uid="uid://pe8e1rd34ld0" path="res://assets/ui/titles/get_ready_title.png" id="10_sc6a6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iajk3"]
 size = Vector2(1052, 304.625)
-
-[sub_resource type="LabelSettings" id="LabelSettings_tq3rl"]
-font = ExtResource("6_us5qp")
-font_size = 140
-shadow_size = 25
-shadow_color = Color(0, 0, 0, 1)
-shadow_offset = Vector2(0, 0)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_lnjsm")
@@ -35,6 +26,7 @@ anchor_mode = 0
 unique_name_in_owner = true
 
 [node name="GroundSB2D" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(459, 1257)
 collision_layer = 4
 collision_priority = 10.0
@@ -55,49 +47,55 @@ position = Vector2(212, 599)
 
 [node name="ScoreLabel" type="Label" parent="UI"]
 unique_name_in_owner = true
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -192.5
-offset_top = 20.0
-offset_right = 192.5
-offset_bottom = 90.0
-grow_horizontal = 2
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -109.0
+offset_top = 9.0
+offset_right = -99.0
+offset_bottom = 25.0
+grow_horizontal = 0
+scale = Vector2(10, 10)
 text = "0"
-label_settings = SubResource("LabelSettings_tq3rl")
 horizontal_alignment = 1
 
-[node name="PauseButton" type="TextureButton" parent="UI"]
+[node name="PauseButton" type="Button" parent="UI"]
 unique_name_in_owner = true
 process_mode = 3
-offset_right = -71.6
-offset_bottom = -76.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 44.0
+offset_bottom = 50.0
 scale = Vector2(5, 5)
-pivot_offset = Vector2(-5, -5)
 focus_mode = 0
+mouse_default_cursor_shape = 2
 action_mode = 0
-texture_normal = ExtResource("6_shwit")
-texture_pressed = ExtResource("7_evylj")
-texture_hover = ExtResource("7_evylj")
-stretch_mode = 5
+icon = ExtResource("6_8bg8p")
 
-[node name="GameOverMenu" parent="UI" instance=ExtResource("9_v8y3l")]
+[node name="Flash" type="ColorRect" parent="UI"]
 unique_name_in_owner = true
-visible = false
-offset_left = 2.0
-offset_right = 2.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
 
 [node name="Title" type="TextureRect" parent="UI"]
 unique_name_in_owner = true
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -300.0
-offset_top = 214.0
-offset_right = 300.0
-offset_bottom = 358.0
+offset_left = -394.0
+offset_top = 235.0
+offset_right = 398.0
+offset_bottom = 401.0
 grow_horizontal = 2
-texture = ExtResource("10_sc6a6")
+texture = ExtResource("7_hagmp")
+
+[node name="GameOverMenu" parent="UI" instance=ExtResource("9_v8y3l")]
+unique_name_in_owner = true
+visible = false
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true

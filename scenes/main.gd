@@ -18,12 +18,13 @@ var score: int = 0:
 @onready var score_label := %ScoreLabel
 @onready var title: TextureRect = %Title
 @onready var timer: Timer = %Timer
-@onready var pause_button: TextureButton = %PauseButton
+@onready var pause_button: Button = %PauseButton
 @onready var game_over_menu: Control = %GameOverMenu
 @onready var point_sound: AudioStreamPlayer = %PointSound
 @onready var camera: Camera2D = %Camera2D
-@onready var ground_body: StaticBody2D = $GroundSB2D
+@onready var ground_body: PhysicsBody2D = %GroundSB2D
 @onready var background: Node2D = %Background
+@onready var flash: ColorRect = %Flash
 
 @onready var camera_player_offset = camera.position.x - player.position.x
 @onready var States = player.States
@@ -68,7 +69,7 @@ func spawn_obstacle() -> void:
 	ground_body.add_sibling(new_obstacle)
 	obstacles.append(new_obstacle)
 	upcoming_obstacles.append(new_obstacle)
-	new_obstacle.position.x = player.position.x + 1500.0
+	new_obstacle.position.x = player.position.x + 2000.0
 	new_obstacle.position.y = randf_range(obstacle_y_min, obstacle_y_max)
 	new_obstacle.modulate.a = 0
 	create_tween().tween_property(new_obstacle, "modulate:a", 1.0, 0.3)
@@ -84,8 +85,13 @@ func _on_player_state_changed(new_state) -> void:
 			timer.start()
 		States.DEAD:
 			timer.stop()
-			create_tween().tween_property(pause_button, "modulate:a", 0.0, 0.2)
-			create_tween().tween_property(score_label, "modulate:a", 0.0, 0.2)
+			create_tween().tween_property(pause_button, "modulate:a", 0.0, 0.4)
+			create_tween().tween_property(score_label, "modulate:a", 0.0, 0.4)
+			
+			var flash_tween = get_tree().create_tween().set_ease(Tween.EASE_OUT_IN)
+			flash_tween.tween_property(flash, "color:a", 0.8, 0.1)
+			flash_tween.tween_property(flash, "color:a", 0.0, 0.1)
+			await get_tree().create_timer(1.0).timeout
 			game_over_menu.appear(score, best_score)
 			if score > best_score:
 				SaveManager.best_score = score

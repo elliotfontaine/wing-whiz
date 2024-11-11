@@ -4,42 +4,43 @@ var PLACEHOLDER_best_score: int = 34
 var PLACEHOLDER_new_score: int = 100
 
 const TWITTER_SHARE_URL = "https://twitter.com/intent/tweet?text="
-var TWITTER_SHARE_TEMPLATE = "✨ I achieved a score of %s in Flappy Godot ! ✨\n
+var TWITTER_SHARE_TEMPLATE = "✨ I achieved a score of %s in Wing Whiz ! ✨\n
 Download or Play the game at {itch}".format({"itch": Globals.ITCHIO_URL})
 
+#TODO: replace with other medals when assets are made
 var medal_textures := {
-	"bronze": preload("res://assets/ui/medals/bronze.png"),
-	"silver": preload("res://assets/ui/medals/silver.png"),
-	"gold": preload("res://assets/ui/medals/gold.png"),
-	"platinum": preload("res://assets/ui/medals/platinum.png")
+	"bronze": preload("res://assets/ui/medals/bronze_2.png"),
+	"silver": preload("res://assets/ui/medals/bronze_2.png"),
+	"gold": preload("res://assets/ui/medals/bronze_2.png"),
+	"platinum": preload("res://assets/ui/medals/bronze_2.png")
 }
 
 var thresholds := {
-	"bronze": 10,
+	"bronze": 5,
 	"silver": 30,
 	"gold": 100,
 	"platinum": 500
 }
 
-var replay_scene: String = "res://scenes/main.tscn"
+var retry_scene: String = "res://scenes/main.tscn"
 var menu_scene: String = "res://scenes/home.tscn"
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var medal: TextureRect = %Medal
-@onready var score_label: Label = %ScoreLabel
-@onready var best_label: Label = %BestLabel
-@onready var new_sticker: TextureRect = %NewSticker
-@onready var replay_button: TextureButton = %ReplayButton
-@onready var menu_button: TextureButton = %MenuButton
-@onready var share_button: TextureButton = %ShareButton
+@onready var score_label: Label = %Score
+@onready var best_label: Label = %Best
+#@onready var new_sticker: TextureRect = %NewSticker
+@onready var retry_button: Button = %RetryButton
+@onready var home_button: Button = %HomeButton
+@onready var share_button: Button = %ShareButton
 
 func _ready() -> void:
 	score_label.text = str(0)
 	medal.texture = null
 	best_label.pivot_offset = best_label.size/2
-	new_sticker.visible = false
-	replay_button.pressed.connect(SceneChanger.change_to.bind(replay_scene))
-	menu_button.pressed.connect(SceneChanger.change_to.bind(menu_scene))
+	#new_sticker.visible = false
+	retry_button.pressed.connect(SceneChanger.change_to.bind(retry_scene))
+	home_button.pressed.connect(SceneChanger.change_to.bind(menu_scene))
 	#appear(PLACEHOLDER_new_score, PLACEHOLDER_best_score)
 
 func appear(new_score: int, previous_best_score: int) -> void:
@@ -57,7 +58,7 @@ func appear(new_score: int, previous_best_score: int) -> void:
 	if new_score > previous_best_score:
 		var record_tween := best_label.create_tween().set_trans(Tween.TRANS_QUAD)
 		best_label.text = str(new_score)
-		new_sticker.visible = true
+		#new_sticker.visible = true
 		best_label.scale *= 2
 		record_tween.tween_property(best_label, "scale", best_label.scale/2, 0.5)
 

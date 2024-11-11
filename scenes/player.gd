@@ -3,8 +3,8 @@ extends CharacterBody2D
 signal state_changed(new_state)
 
 @export var gravity: float = 90
-@export var flap_strength: float = 1300.0
-@export var terminal_y_velocity: float = 150
+@export var flap_strength: float = 1350.0
+@export var terminal_y_velocity: float = 30.0
 
 const FLAP_ANGLE := -PI/6
 var MAX_ANGLE := PI/2.2
@@ -47,7 +47,7 @@ func _physics_process(delta: float):
 			move_and_collide(velocity)
 			if position.y > 700:
 				flap(flap_strength/1.5, delta)
-			if position.y > 400 and randf() > 0.97:
+			if position.y > 400 and randf() > 0.96:
 				flap(flap_strength/1.5, delta)
 
 func flap(strength: float, delta: float) -> void:
@@ -58,7 +58,7 @@ func flap(strength: float, delta: float) -> void:
 
 func apply_gravity(g: float, delta: float) -> void:
 	velocity.y += g * delta
-	velocity.y = clampf(velocity.y, -terminal_y_velocity, terminal_y_velocity)
+	velocity.y = min(velocity.y, terminal_y_velocity)
 	if velocity.y > 0:
 		animated_sprite.rotate(velocity.y * delta * 0.5)
 		animated_sprite.rotation = min(MAX_ANGLE, animated_sprite.rotation)

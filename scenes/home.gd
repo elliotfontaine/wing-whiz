@@ -3,7 +3,7 @@ extends Node
 var play_scene: String = "res://scenes/main.tscn"
 
 @onready var player: CharacterBody2D = %Player
-@onready var play_button: TextureButton = %PlayButton
+@onready var play_button: Button = %PlayButton
 @onready var camera: Camera2D = %Camera2D
 @onready var camera_player_offset = camera.position.x - player.position.x
 

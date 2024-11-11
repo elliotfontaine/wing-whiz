@@ -1,0 +1,10 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://do6lkcvhts2ip"]
+
+[ext_resource type="Texture2D" uid="uid://dhsgknvrkbgj4" path="res://assets/ui/buttons/flat_button_pressed.png" id="1_jsitj"]
+
+[resource]
+texture = ExtResource("1_jsitj")
+texture_margin_left = 5.0
+texture_margin_top = 9.0
+texture_margin_right = 6.0
+texture_margin_bottom = 11.0

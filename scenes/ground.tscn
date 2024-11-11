@@ -5,6 +5,7 @@
 [node name="Ground" type="Parallax2D"]
 scroll_scale = Vector2(1, 0)
 repeat_size = Vector2(3280, 0)
+repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(5, 5)

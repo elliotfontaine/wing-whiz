@@ -1,287 +1,189 @@
-[gd_scene load_steps=18 format=3 uid="uid://bau0ceijodblo"]
+[gd_scene load_steps=9 format=3 uid="uid://1g3xfajskdtr"]
 
-[ext_resource type="Script" path="res://scenes/game_over_menu.gd" id="1_4f86b"]
-[ext_resource type="Texture2D" uid="uid://didf8gji1fq7x" path="res://assets/ui/titles/game_over_title.png" id="1_xdc1d"]
-[ext_resource type="Texture2D" uid="uid://k4j8ai0gj71c" path="res://assets/ui/score_panel.png" id="2_2uhq8"]
-[ext_resource type="Texture2D" uid="uid://c6is003mbaluq" path="res://assets/ui/medals/silver.png" id="3_muadv"]
-[ext_resource type="FontFile" uid="uid://cu8aacyl5o2xw" path="res://assets/ui/font/flappy-font.ttf" id="4_hnbfa"]
-[ext_resource type="Texture2D" uid="uid://cjiw721pujyrf" path="res://assets/ui/new_best_score.png" id="6_6r527"]
-[ext_resource type="Texture2D" uid="uid://vul2f5y053m8" path="res://assets/ui/buttons/menu_button.png" id="6_yc317"]
-[ext_resource type="Texture2D" uid="uid://4y5xstwm2mro" path="res://assets/ui/buttons/menu_button_pressed.png" id="7_jxibx"]
-[ext_resource type="Texture2D" uid="uid://wb1dvlb7ya2h" path="res://assets/ui/buttons/share_button.png" id="8_eiymb"]
-[ext_resource type="Texture2D" uid="uid://br0wlfhfsosu1" path="res://assets/ui/buttons/replay_button.png" id="9_b17ys"]
-[ext_resource type="Texture2D" uid="uid://bu6dhx6vf5wd0" path="res://assets/ui/buttons/share_button_pressed.png" id="9_mc8gv"]
-[ext_resource type="Texture2D" uid="uid://bcd6vvquyjwu3" path="res://assets/ui/buttons/replay_button_pressed.png" id="10_x8t8u"]
+[ext_resource type="Theme" uid="uid://chu8dr8oafu2f" path="res://assets/ui/ui_theme.tres" id="1_bbnub"]
+[ext_resource type="Script" path="res://scenes/game_over_menu.gd" id="2_guksp"]
+[ext_resource type="Texture2D" uid="uid://bjf2wgs2accqm" path="res://assets/ui/medals/medal_hole.png" id="2_t0ues"]
+[ext_resource type="Texture2D" uid="uid://cusro2vbuj0o" path="res://assets/ui/medals/bronze_3.png" id="3_fhauw"]
+[ext_resource type="Texture2D" uid="uid://baq7m3ycwu4eq" path="res://assets/ui/buttons/retry_icon.png" id="4_0mtcn"]
+[ext_resource type="Texture2D" uid="uid://cd8fgwrt41qaw" path="res://assets/ui/buttons/share_icon.png" id="5_e861r"]
+[ext_resource type="Texture2D" uid="uid://gnaivebymrj3" path="res://assets/ui/buttons/home_icon.png" id="6_bim16"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_da6oq"]
-font = ExtResource("4_hnbfa")
-font_size = 50
-shadow_color = Color(0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_7bx0r"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Title:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Title:offset_top")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(0.378929),
-"update": 0,
-"values": [-231]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("ScorePanel:offset_bottom")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [391.0]
-}
-
-[sub_resource type="Animation" id="Animation_un20d"]
-resource_name = "idle"
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath("Title:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1.7411, 1),
-"update": 0,
-"values": [Vector2(140, 360), Vector2(140, 335)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Title:offset_top")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1.74, 1),
-"update": 0,
-"values": [-231.0, -220]
-}
-
-[sub_resource type="Animation" id="Animation_1fi8g"]
-resource_name = "title_appear"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Title:offset_top")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(0.378929, 1),
-"update": 0,
-"values": [-600, -231]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Title:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("ScorePanel:offset_bottom")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(0.378, 1),
-"update": 0,
-"values": [2902.0, 391]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_lxydf"]
-_data = {
-"RESET": SubResource("Animation_7bx0r"),
-"idle": SubResource("Animation_un20d"),
-"title_appear": SubResource("Animation_1fi8g")
-}
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8qcfu"]
 
 [node name="GameOverMenu" type="Control"]
 layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -639.0
+offset_right = -288.0
+offset_bottom = -442.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+theme = ExtResource("1_bbnub")
+script = ExtResource("2_guksp")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -0.2
+offset_bottom = -0.199997
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_4f86b")
+color = Color(0, 0, 0, 0)
 
-[node name="Title" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -220.0
-offset_top = -231.0
-offset_right = 220.0
-offset_bottom = -120.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_xdc1d")
-stretch_mode = 4
-
-[node name="ScorePanel" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -242.0
-offset_top = -386.0
-offset_right = 242.0
-offset_bottom = 391.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_2uhq8")
-stretch_mode = 5
-
-[node name="Medal" type="TextureRect" parent="ScorePanel"]
-unique_name_in_owner = true
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -189.0
-offset_top = -32.0
-offset_right = -89.0
-offset_bottom = 62.0
+offset_left = -41.0
+offset_top = -33.5
+offset_right = 41.0
+offset_bottom = 33.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_muadv")
-stretch_mode = 5
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="ScoreLabel" type="Label" parent="ScorePanel"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 103.0
-offset_top = -53.5
-offset_right = 211.0
-offset_bottom = 8.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "7"
-label_settings = SubResource("LabelSettings_da6oq")
-horizontal_alignment = 2
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
 
-[node name="BestLabel" type="Label" parent="ScorePanel"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 33.0
-offset_top = 40.5
-offset_right = 212.0
-offset_bottom = 95.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "12"
-label_settings = SubResource("LabelSettings_da6oq")
-horizontal_alignment = 2
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
 
-[node name="NewSticker" type="TextureRect" parent="ScorePanel/BestLabel"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -28.0
-offset_top = -27.0
-offset_right = 43.0
-offset_bottom = 3.0
-grow_horizontal = 0
-rotation = 0.311687
-texture = ExtResource("6_6r527")
-stretch_mode = 5
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScorePanel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.497
-anchor_top = 0.5
-anchor_right = 0.497
-anchor_bottom = 0.5
-offset_left = -252.548
-offset_top = 125.0
-offset_right = -151.548
-offset_bottom = 139.0
-grow_horizontal = 2
-scale = Vector2(5, 5)
+[node name="Results" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
 alignment = 1
 
-[node name="MenuButton" type="TextureButton" parent="ScorePanel/HBoxContainer"]
-unique_name_in_owner = true
+[node name="MedalColumn" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Results"]
 layout_mode = 2
-focus_mode = 0
-texture_normal = ExtResource("6_yc317")
-texture_pressed = ExtResource("7_jxibx")
-stretch_mode = 3
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
 
-[node name="ReplayButton" type="TextureButton" parent="ScorePanel/HBoxContainer"]
-unique_name_in_owner = true
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Results/MedalColumn"]
 layout_mode = 2
-focus_mode = 0
-texture_normal = ExtResource("9_b17ys")
-texture_pressed = ExtResource("10_x8t8u")
-stretch_mode = 3
+theme_override_font_sizes/font_size = 16
+text = "Medal"
 
-[node name="ShareButton" type="TextureButton" parent="ScorePanel/HBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Results/MedalColumn"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Results/MedalColumn"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="MedalHole" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Results/MedalColumn/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("2_t0ues")
+
+[node name="Medal" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Results/MedalColumn/CenterContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-focus_mode = 0
-texture_normal = ExtResource("8_eiymb")
-texture_pressed = ExtResource("9_mc8gv")
-stretch_mode = 5
+texture = ExtResource("3_fhauw")
+stretch_mode = 2
+
+[node name="ScoreColumn" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Results"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Results/ScoreColumn"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Score
+"
+horizontal_alignment = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Results/ScoreColumn"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Score" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Results/ScoreColumn"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.243137, 0.207843, 0.27451, 1)
+theme_override_font_sizes/font_size = 16
+text = "37
+"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Results/ScoreColumn"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Best"
+horizontal_alignment = 2
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Results/ScoreColumn"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Best" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Results/ScoreColumn"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.243137, 0.207843, 0.27451, 1)
+theme_override_font_sizes/font_size = 16
+text = "61
+"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Menu" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RetryButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Retry"
+icon = ExtResource("4_0mtcn")
+icon_alignment = 2
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Menu"]
+layout_mode = 2
+theme_override_constants/separation = 6
+theme_override_styles/separator = SubResource("StyleBoxEmpty_8qcfu")
+
+[node name="ShareButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("5_e861r")
+
+[node name="HomeButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+icon = ExtResource("6_bim16")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
-libraries = {
-"": SubResource("AnimationLibrary_lxydf")
-}
