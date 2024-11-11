@@ -44,10 +44,9 @@ func _ready() -> void:
 	#appear(PLACEHOLDER_new_score, PLACEHOLDER_best_score)
 
 func appear(new_score: int, previous_best_score: int) -> void:
-	visible = true
 	best_label.text = str(previous_best_score)
 	share_button.pressed.connect(_on_share_pressed.bind(new_score))
-	animation_player.play("title_appear")
+	animation_player.play("appear")
 	var score_tween := score_label.create_tween().set_trans(Tween.TRANS_QUAD)
 	score_tween.tween_method(_update_score, 0, new_score, 1.5)
 	await animation_player.animation_finished

@@ -34,6 +34,7 @@ func _ready() -> void:
 	timer.timeout.connect(spawn_obstacle)
 	pause_button.pressed.connect(_on_pause_pressed)
 	player.state_changed.connect(_on_player_state_changed)
+	pause_button.visible = false
 	pause_button.modulate.a = 0
 	score_label.modulate.a = 0
 
@@ -78,6 +79,7 @@ func _on_player_state_changed(new_state) -> void:
 	match new_state:
 		States.FLYING:
 			spawn_obstacle()
+			pause_button.visible = true
 			create_tween().tween_property(pause_button, "modulate:a", 1.0, 0.2)
 			create_tween().tween_property(score_label, "modulate:a", 1.0, 0.2)
 			create_tween().tween_property(title, "modulate:a", 0.0, 0.2)
@@ -91,7 +93,7 @@ func _on_player_state_changed(new_state) -> void:
 			var flash_tween = get_tree().create_tween().set_ease(Tween.EASE_OUT_IN)
 			flash_tween.tween_property(flash, "color:a", 0.8, 0.1)
 			flash_tween.tween_property(flash, "color:a", 0.0, 0.1)
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(0.5).timeout
 			game_over_menu.appear(score, best_score)
 			if score > best_score:
 				SaveManager.best_score = score
