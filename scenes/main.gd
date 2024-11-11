@@ -1,6 +1,6 @@
 extends Node
 
-@export var obstacle_scene : PackedScene
+@export var obstacle_scene: PackedScene
 @export var player_speed: float = 7.0
 @export var obstacle_y_min := 300.0
 @export var obstacle_y_max := 800.0
@@ -30,7 +30,7 @@ var score: int = 0:
 @onready var States = player.States
 
 func _ready() -> void:
-	timer.wait_time = 7.0/player_speed
+	timer.wait_time = 7.0 / player_speed
 	timer.timeout.connect(spawn_obstacle)
 	pause_button.pressed.connect(_on_pause_pressed)
 	player.state_changed.connect(_on_player_state_changed)
@@ -48,7 +48,7 @@ func _on_pause_pressed() -> void:
 func _physics_process(delta: float) -> void:
 	ground_body.position.x = player.position.x
 	if player.state in [player.States.READY, player.States.FLYING]:
-		player.position.x += player_speed*delta*60
+		player.position.x += player_speed * delta * 60
 		camera.position.x = player.position.x + camera_player_offset
 	if player.state == player.States.FLYING:
 		# Check if the player passed an obstacle
@@ -83,7 +83,7 @@ func _on_player_state_changed(new_state) -> void:
 			create_tween().tween_property(pause_button, "modulate:a", 1.0, 0.2)
 			create_tween().tween_property(score_label, "modulate:a", 1.0, 0.2)
 			create_tween().tween_property(title, "modulate:a", 0.0, 0.2)
-			create_tween().tween_property(title, "position:y", title.position.y-40, 0.2)
+			create_tween().tween_property(title, "position:y", title.position.y - 40, 0.2)
 			timer.start()
 		States.DEAD:
 			timer.stop()
