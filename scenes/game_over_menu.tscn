@@ -295,7 +295,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.243137, 0.207843, 0.27451, 1)
-theme_override_font_sizes/font_size = 16
 text = "37
 "
 horizontal_alignment = 2
@@ -316,10 +315,9 @@ size_flags_horizontal = 8
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
+size_flags_horizontal = 8
 theme_override_colors/font_color = Color(0.243137, 0.207843, 0.27451, 1)
-theme_override_font_sizes/font_size = 16
-text = "61
-"
+text = "61"
 horizontal_alignment = 2
 vertical_alignment = 1
 
