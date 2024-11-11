@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Flappy Godot"
+config/name="Wing Whiz"
 run/main_scene="res://scenes/home.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon-144.png"
