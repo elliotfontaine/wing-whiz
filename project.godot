@@ -29,7 +29,6 @@ Globals="*res://autoloads/Globals.gd"
 
 window/size/viewport_width=960
 window/size/viewport_height=1280
-window/size/always_on_top=true
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/handheld/orientation=1

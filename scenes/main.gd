@@ -7,7 +7,6 @@ extends Node
 
 var obstacles: Array[Node2D]
 var upcoming_obstacles: Array[Node2D]
-var best_score = SaveManager.best_score
 var score: int = 0:
 	set(new_score):
 		score = new_score
@@ -25,7 +24,7 @@ var score: int = 0:
 @onready var ground_body: PhysicsBody2D = %GroundSB2D
 @onready var background: Node2D = %Background
 @onready var flash: ColorRect = %Flash
-
+@onready var best_score = SaveManager.best_score
 @onready var camera_player_offset = camera.position.x - player.position.x
 @onready var States = player.States
 
