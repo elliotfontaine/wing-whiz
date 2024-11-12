@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://qepiltkccigy"]
+[gd_scene load_steps=10 format=3 uid="uid://qepiltkccigy"]
 
 [ext_resource type="Script" path="res://scenes/home.gd" id="1_3v128"]
 [ext_resource type="PackedScene" uid="uid://cni3ljkwupbfc" path="res://scenes/background.tscn" id="3_jun4f"]
@@ -7,17 +7,21 @@
 [ext_resource type="Texture2D" uid="uid://bs6mum74g8cb6" path="res://assets/ui/buttons/resume_icon.png" id="5_ihmwa"]
 [ext_resource type="Texture2D" uid="uid://cxgjldiien6it" path="res://assets/ui/titles/wing_whiz.png" id="5_kqgwt"]
 [ext_resource type="Texture2D" uid="uid://ctkkbm8jfha5w" path="res://assets/ui/buttons/options_icon.png" id="6_7t71t"]
+[ext_resource type="PackedScene" uid="uid://38vvjgmqvsgo" path="res://scenes/parallax_background.tscn" id="8_poabo"]
+[ext_resource type="PackedScene" uid="uid://dkhuv62ytrwfk" path="res://scenes/parallax_foreground.tscn" id="9_y7uro"]
 
 [node name="Home" type="Node"]
 script = ExtResource("1_3v128")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
-anchor_mode = 0
+position = Vector2(480, 640)
 
 [node name="Background" parent="." instance=ExtResource("3_jun4f")]
+visible = false
 
 [node name="Ground" parent="." instance=ExtResource("3_ke246")]
+visible = false
 scroll_offset = Vector2(0, 1424)
 
 [node name="Player" parent="." instance=ExtResource("5_6675b")]
@@ -25,6 +29,7 @@ unique_name_in_owner = true
 position = Vector2(472, 608)
 
 [node name="UI" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="UI"]
 anchors_preset = 8
@@ -79,3 +84,7 @@ grow_horizontal = 2
 scale = Vector2(5, 5)
 texture = ExtResource("5_kqgwt")
 stretch_mode = 5
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("8_poabo")]
+
+[node name="ParallaxForeground" parent="." instance=ExtResource("9_y7uro")]

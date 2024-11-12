@@ -3,12 +3,12 @@
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_lnjsm"]
 [ext_resource type="PackedScene" uid="uid://dxrvyg2gkpkyn" path="res://scenes/player.tscn" id="1_ytolg"]
 [ext_resource type="PackedScene" uid="uid://sr2vyno2c7su" path="res://scenes/obstacle.tscn" id="2_iu102"]
-[ext_resource type="PackedScene" uid="uid://cni3ljkwupbfc" path="res://scenes/background.tscn" id="3_20bfv"]
-[ext_resource type="PackedScene" uid="uid://c8aab5lythc2" path="res://scenes/ground.tscn" id="4_tqol2"]
 [ext_resource type="Texture2D" uid="uid://c8e3umou1ee1p" path="res://assets/ui/buttons/pause_icon.png" id="6_8bg8p"]
 [ext_resource type="Texture2D" uid="uid://dppvmxfo8dovd" path="res://assets/ui/titles/get_ready.png" id="7_hagmp"]
 [ext_resource type="PackedScene" uid="uid://1g3xfajskdtr" path="res://scenes/game_over_menu.tscn" id="9_v8y3l"]
+[ext_resource type="PackedScene" uid="uid://38vvjgmqvsgo" path="res://scenes/parallax_background.tscn" id="10_3bci0"]
 [ext_resource type="AudioStream" uid="uid://bv3pqb5o4d7t" path="res://assets/audio/point.wav" id="10_lj236"]
+[ext_resource type="PackedScene" uid="uid://dkhuv62ytrwfk" path="res://scenes/parallax_foreground.tscn" id="11_26872"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iajk3"]
 size = Vector2(1052, 304.625)
@@ -20,10 +20,7 @@ obstacle_scene = ExtResource("2_iu102")
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
 process_mode = 3
-anchor_mode = 0
-
-[node name="Background" parent="." instance=ExtResource("3_20bfv")]
-unique_name_in_owner = true
+position = Vector2(480, 640)
 
 [node name="GroundSB2D" type="StaticBody2D" parent="."]
 unique_name_in_owner = true
@@ -35,27 +32,25 @@ collision_priority = 10.0
 shape = SubResource("RectangleShape2D_iajk3")
 debug_color = Color(0.967268, 0, 0.475328, 0.42)
 
-[node name="Ground" parent="." instance=ExtResource("4_tqol2")]
-unique_name_in_owner = true
-scroll_offset = Vector2(0, 1424)
-
 [node name="Player" parent="." instance=ExtResource("1_ytolg")]
 unique_name_in_owner = true
-position = Vector2(212, 599)
+position = Vector2(268, 599)
 
 [node name="UI" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="ScoreLabel" type="Label" parent="UI"]
 unique_name_in_owner = true
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -571.0
+offset_left = -72.0
 offset_top = 16.0
-offset_right = -515.0
+offset_right = -16.0
 offset_bottom = 32.0
 grow_horizontal = 0
 scale = Vector2(10, 10)
+pivot_offset = Vector2(56, 0)
 text = "0"
 horizontal_alignment = 2
 
@@ -122,6 +117,10 @@ grow_horizontal = 2
 scale = Vector2(2, 2)
 text = "cutouts"
 
+[node name="ParallaxBackground" parent="." instance=ExtResource("10_3bci0")]
+
+[node name="ParallaxForeground" parent="." instance=ExtResource("11_26872")]
+
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
 process_callback = 0
@@ -130,5 +129,3 @@ process_callback = 0
 unique_name_in_owner = true
 stream = ExtResource("10_lj236")
 volume_db = -5.0
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]

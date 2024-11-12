@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://38vvjgmqvsgo"]
+
+[ext_resource type="Texture2D" uid="uid://cjp5u4dqk1eg0" path="res://assets/environment/backgrounds/sky_day_large.png" id="1_32j35"]
+[ext_resource type="Texture2D" uid="uid://b5oxppmqco221" path="res://assets/environment/backgrounds/back_city_day_large.png" id="2_mmrid"]
+[ext_resource type="Texture2D" uid="uid://ckfgmii3h3r4l" path="res://assets/environment/backgrounds/front_city_day_large.png" id="3_g3v8q"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="Sky" type="ParallaxLayer" parent="."]
+position = Vector2(0, -176)
+motion_scale = Vector2(0.15, 1)
+motion_mirroring = Vector2(2560, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sky"]
+position = Vector2(1280, 0)
+scale = Vector2(5, 5)
+texture = ExtResource("1_32j35")
+
+[node name="BackCity" type="ParallaxLayer" parent="."]
+position = Vector2(0, 464)
+motion_scale = Vector2(0.5, 1)
+motion_mirroring = Vector2(2560, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="BackCity"]
+position = Vector2(1280, 0)
+scale = Vector2(5, 5)
+texture = ExtResource("2_mmrid")
+
+[node name="FrontCity" type="ParallaxLayer" parent="."]
+position = Vector2(0, 464)
+motion_scale = Vector2(0.53, 1)
+motion_mirroring = Vector2(2560, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="FrontCity"]
+position = Vector2(1280, 0)
+scale = Vector2(5, 5)
+texture = ExtResource("3_g3v8q")

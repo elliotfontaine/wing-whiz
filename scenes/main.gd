@@ -4,6 +4,7 @@ extends Node
 @export var player_speed: float = 7.0
 @export var obstacle_y_min := 300.0
 @export var obstacle_y_max := 800.0
+@export var debug: bool = false
 
 var obstacles: Array[Node2D]
 var upcoming_obstacles: Array[Node2D]
@@ -22,7 +23,6 @@ var score: int = 0:
 @onready var point_sound: AudioStreamPlayer = %PointSound
 @onready var camera: Camera2D = %Camera2D
 @onready var ground_body: PhysicsBody2D = %GroundSB2D
-@onready var background: Node2D = %Background
 @onready var flash: ColorRect = %Flash
 @onready var best_score = SaveManager.best_score
 @onready var camera_player_offset = camera.position.x - player.position.x
@@ -36,7 +36,7 @@ func _ready() -> void:
 	pause_button.visible = false
 	pause_button.modulate.a = 0
 	score_label.modulate.a = 0
-	if OS.is_debug_build():
+	if debug and OS.is_debug_build():
 		draw_debug_mobile()
 	# Check if on android
 	if OS.get_name() == "Android":
