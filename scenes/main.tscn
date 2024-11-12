@@ -50,10 +50,10 @@ unique_name_in_owner = true
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -555.0
-offset_top = 9.0
-offset_right = -500.0
-offset_bottom = 25.0
+offset_left = -571.0
+offset_top = 16.0
+offset_right = -515.0
+offset_bottom = 32.0
 grow_horizontal = 0
 scale = Vector2(10, 10)
 text = "0"
@@ -64,8 +64,6 @@ unique_name_in_owner = true
 process_mode = 3
 offset_left = 16.0
 offset_top = 16.0
-offset_right = 44.0
-offset_bottom = 50.0
 scale = Vector2(5, 5)
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -97,6 +95,32 @@ texture = ExtResource("7_hagmp")
 [node name="GameOverMenu" parent="UI" instance=ExtResource("9_v8y3l")]
 unique_name_in_owner = true
 visible = false
+
+[node name="DebugSafeArea" type="Label" parent="UI"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -171.0
+offset_top = 110.0
+offset_right = -91.0
+offset_bottom = 130.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+text = "safearea"
+
+[node name="DebugCutouts" type="Label" parent="UI"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -174.0
+offset_top = 154.0
+offset_right = -104.0
+offset_bottom = 170.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+text = "cutouts"
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true

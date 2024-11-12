@@ -36,6 +36,30 @@ func _ready() -> void:
 	pause_button.visible = false
 	pause_button.modulate.a = 0
 	score_label.modulate.a = 0
+	if OS.is_debug_build():
+		draw_debug_mobile()
+	# Check if on android
+	if OS.get_name() == "Android":
+		# That's really not clean
+		pause_button.offset_left *= 2
+		pause_button.offset_top *= 2
+		score_label.offset_right -= 3
+		score_label.offset_top += 16
+
+func draw_debug_mobile():
+	var safe_area: Rect2i = DisplayServer.get_display_safe_area()
+	var cutouts: Array[Rect2] = DisplayServer.get_display_cutouts()
+	$UI/DebugCutouts.visible = true
+	$UI/DebugSafeArea.visible = true
+	$UI/DebugCutouts.text = "Cutouts: " + str(cutouts)
+	$UI/DebugSafeArea.text = "Safe zone: " + str(safe_area)
+	for rect in [safe_area] + cutouts:
+		var debug_rect = ColorRect.new()
+		debug_rect.color = Color(randf(), randf(), randf(), 0.3)
+		debug_rect.position = rect.position
+		debug_rect.size = rect.size
+		debug_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		$UI.add_child(debug_rect)
 
 func _notification(what: int):
 	if what == NOTIFICATION_APPLICATION_FOCUS_OUT and player.state == States.FLYING:

@@ -6,8 +6,8 @@ signal state_changed(new_state)
 @export var flap_strength: float = 1350.0
 @export var terminal_y_velocity: float = 30.0
 
-const FLAP_ANGLE := -PI/6
-var MAX_ANGLE := PI/2.2
+const FLAP_ANGLE := -PI / 6
+var MAX_ANGLE := PI / 2.2
 
 # Player is a finite-state-machine
 enum States {READY, FLYING, DEAD, AUTO}
@@ -37,7 +37,7 @@ func _physics_process(delta: float):
 			var collision = move_and_collide(velocity)
 			if collision:
 				state = States.DEAD
-				flap(flap_strength/0.9, delta)
+				flap(flap_strength / 0.9, delta)
 				print_debug("I, ", name, ", collided with ", collision.get_collider().name, "!")
 		States.DEAD:
 			apply_gravity(gravity, delta)
@@ -45,13 +45,13 @@ func _physics_process(delta: float):
 		States.AUTO:
 			apply_gravity(gravity, delta)
 			move_and_collide(velocity)
-			if position.y > 700:
-				flap(flap_strength/1.5, delta)
+			if position.y > 600:
+				flap(flap_strength / 1.5, delta)
 			if position.y > 400 and randf() > 0.96:
-				flap(flap_strength/1.5, delta)
+				flap(flap_strength / 1.5, delta)
 
 func flap(strength: float, delta: float) -> void:
-	velocity.y = - strength * delta
+	velocity.y = -strength * delta
 	animated_sprite.rotation = FLAP_ANGLE
 	if state != States.AUTO:
 		flap_sound.play()
@@ -86,4 +86,3 @@ func _set_state(new_state: States) -> void:
 			animated_sprite.play()
 			ready_tween.stop()
 			collision_mask = 0
-		

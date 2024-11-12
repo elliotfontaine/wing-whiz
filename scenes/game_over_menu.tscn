@@ -217,10 +217,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -97.0
-offset_top = -62.7
-offset_right = 97.0
-offset_bottom = 88.3
+offset_left = -98.0
+offset_top = -69.9999
+offset_right = 96.0
+offset_bottom = 79.0001
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(5, 5)
@@ -272,6 +272,11 @@ unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("3_fhauw")
 stretch_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Results"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 3
 
 [node name="ScoreColumn" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Results"]
 layout_mode = 2
@@ -327,13 +332,14 @@ clip_contents = false
 layout_mode = 2
 theme_override_colors/default_color = Color(0.243137, 0.207843, 0.27451, 1)
 bbcode_enabled = true
-text = "[right][rainbow sat=0.6 val=0.9][wave amp=15.0 freq=7.0]New [/wave][/rainbow]61[/right]"
+text = "[right]61[/right]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
 [node name="Menu" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="RetryButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Menu"]
 unique_name_in_owner = true
@@ -361,6 +367,28 @@ icon = ExtResource("5_e861r")
 
 [node name="HomeButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Menu"]
 unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+icon = ExtResource("6_bim16")
+
+[node name="Menu2" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="ShareButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Menu2"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("5_e861r")
+
+[node name="HomeButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Menu2"]
+visible = false
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
