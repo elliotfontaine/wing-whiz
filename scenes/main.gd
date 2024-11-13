@@ -14,6 +14,11 @@ var score: int = 0:
 		score_label.text = str(new_score)
 		point_sound.play()
 
+var get_ready_textures = {
+	"long": preload("res://assets/ui/titles/get_ready.png"),
+	"short": preload("res://assets/ui/titles/get_ready_shorter.png")
+}
+
 @onready var player := %Player
 @onready var score_label := %ScoreLabel
 @onready var title: TextureRect = %Title
@@ -33,6 +38,8 @@ func _ready() -> void:
 	timer.timeout.connect(spawn_obstacle)
 	pause_button.pressed.connect(_on_pause_pressed)
 	player.state_changed.connect(_on_player_state_changed)
+	ResponsiveUI.ratio_changed.connect(_on_ratio_changed)
+	_on_ratio_changed(ResponsiveUI.ratio)
 	pause_button.visible = false
 	pause_button.modulate.a = 0
 	score_label.modulate.a = 0
@@ -97,6 +104,20 @@ func spawn_obstacle() -> void:
 	new_obstacle.position.y = randf_range(obstacle_y_min, obstacle_y_max)
 	new_obstacle.modulate.a = 0
 	create_tween().tween_property(new_obstacle, "modulate:a", 1.0, 0.3)
+
+func _on_ratio_changed(ratio) -> void:
+	if ratio < 0.8:
+		camera.zoom = Vector2(1.5, 1.5)
+		pause_button.scale = Vector2(7.5, 7.5)
+		score_label.scale = Vector2(15, 15)
+		title.scale = Vector2(7.5, 7.5)
+		title.texture = get_ready_textures["short"]
+	else:
+		camera.zoom = Vector2(1.0, 1.0)
+		score_label.scale = Vector2(10, 10)
+		pause_button.scale = Vector2(5, 5)
+		title.scale = Vector2(5.0, 5.0)
+		title.texture = get_ready_textures["long"]
 
 func _on_player_state_changed(new_state) -> void:
 	match new_state:

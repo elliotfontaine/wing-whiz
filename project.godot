@@ -21,9 +21,10 @@ buses/default_bus_layout=""
 
 [autoload]
 
+Globals="*res://autoloads/Globals.gd"
 SceneChanger="*res://autoloads/SceneChanger.tscn"
 SaveManager="*res://autoloads/SaveManager.gd"
-Globals="*res://autoloads/Globals.gd"
+ResponsiveUI="*res://autoloads/ResponsiveUI.gd"
 
 [display]
 
