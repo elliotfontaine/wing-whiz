@@ -46,6 +46,7 @@ func _ready() -> void:
 	retry_button.pressed.connect(SceneChanger.change_to.bind(RETRY_SCENE))
 	home_button.pressed.connect(SceneChanger.change_to.bind(MENU_SCENE))
 	ResponsiveUI.ratio_changed.connect(_on_ratio_changed)
+	_on_ratio_changed(ResponsiveUI.ratio)
 
 func appear(new_score: int, previous_best_score: int) -> void:
 	best_label.text = BEST_SCORE_TEMPLATE % previous_best_score
@@ -84,7 +85,6 @@ func _on_share_pressed(score: int) -> void:
 	OS.shell_open(url)
 
 func _on_ratio_changed(ratio) -> void:
-	#var ratio = ResponsiveUI.ratio
 	if ratio < 0.8:
 		$GameOverPanel/MarginContainer.scale = Vector2(7.5, 7.5)
 		$GameOverPanel/MarginContainer.add_theme_constant_override("margin_left", 35)
