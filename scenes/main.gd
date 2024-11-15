@@ -12,6 +12,9 @@ var score: int = 0:
 	set(new_score):
 		score = new_score
 		score_label.text = str(new_score)
+		point_sound.pitch_scale = 1.1
+		if new_score % 10 == 0:
+			point_sound.pitch_scale = 1.6
 		point_sound.play()
 
 var get_ready_textures = {
@@ -137,7 +140,7 @@ func _on_player_state_changed(new_state) -> void:
 			var flash_tween = get_tree().create_tween().set_ease(Tween.EASE_OUT_IN)
 			flash_tween.tween_property(flash, "color:a", 0.8, 0.1)
 			flash_tween.tween_property(flash, "color:a", 0.0, 0.1)
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(0.8).timeout
 			game_over_menu.appear(score, best_score)
 			if score > best_score:
 				SaveManager.best_score = score

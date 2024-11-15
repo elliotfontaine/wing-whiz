@@ -15,10 +15,10 @@ var state: States: set = _set_state
 var ready_tween := create_tween().set_trans(Tween.TRANS_QUAD).set_loops()
 
 
-@onready var animated_sprite := $AnimatedSprite2D
-@onready var hit_sound := $HitSound
-@onready var flap_sound: AudioStreamPlayer = $FlapSound
-@onready var die_sound: AudioStreamPlayer = $DieSound
+@onready var animated_sprite := %AnimatedSprite2D
+@onready var hit_sound := %HitSound
+@onready var flap_sound: AudioStreamPlayer = %FlapSound
+@onready var die_sound: AudioStreamPlayer = %DieSound
 
 func _ready():
 	state = States.READY
@@ -37,11 +37,14 @@ func _physics_process(delta: float):
 			var collision = move_and_collide(velocity)
 			if collision:
 				state = States.DEAD
-				flap(flap_strength / 0.9, delta)
+				flap(flap_strength / 2, delta)
 				print_debug("I, ", name, ", collided with ", collision.get_collider().name, "!")
 		States.DEAD:
 			apply_gravity(gravity, delta)
-			move_and_collide(velocity)
+			var collision = move_and_collide(velocity)
+			if die_sound.playing and collision:
+				var fade_out = create_tween()
+				fade_out.tween_property(die_sound, "volume_db", linear_to_db(0.0001), 0.1)
 		States.AUTO:
 			apply_gravity(gravity, delta)
 			move_and_collide(velocity)
@@ -79,9 +82,14 @@ func _set_state(new_state: States) -> void:
 			collision_mask = 6
 		States.DEAD:
 			animated_sprite.stop()
-			hit_sound.play()
-			die_sound.play()
 			collision_mask = 4
+			hit_sound.play()
+			await get_tree().create_timer(0.05).timeout
+			var fade_in = create_tween()
+			var target_volume = die_sound.volume_db
+			die_sound.volume_db = linear_to_db(0.0001)
+			fade_in.tween_property(die_sound, "volume_db", target_volume, 0.4)
+			die_sound.play()
 		States.AUTO:
 			animated_sprite.play()
 			ready_tween.stop()
