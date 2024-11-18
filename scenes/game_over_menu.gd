@@ -39,6 +39,7 @@ var game_over_textures = {
 @onready var home_button: Button = %HomeButton
 @onready var share_button: Button = %ShareButton
 @onready var title: TextureRect = %Title
+@onready var score_up_sound: AudioStreamPlayer = %ScoreUpSound
 
 func _ready() -> void:
 	score_label.text = str(0)
@@ -67,7 +68,11 @@ func appear(new_score: int, previous_best_score: int) -> void:
 	update_medal(new_score)
 
 func _update_score(new_score: int):
-	score_label.text = str(new_score)
+	if new_score != score_label.text.to_int():
+		score_label.text = str(new_score)
+		score_up_sound.pitch_scale += 0.005
+		score_up_sound.play()
+
 
 func update_medal(score: int) -> void:
 	var new_medal = null
@@ -96,8 +101,8 @@ func _on_ratio_changed(ratio) -> void:
 		title.offset_bottom = -575
 	else:
 		$GameOverPanel/MarginContainer.scale = Vector2(5, 5)
-		$GameOverPanel/MarginContainer.add_theme_constant_override("margin_left", 10)
-		$GameOverPanel/MarginContainer.add_theme_constant_override("margin_right", 10)
+		$GameOverPanel/MarginContainer.add_theme_constant_override("margin_left", 8)
+		$GameOverPanel/MarginContainer.add_theme_constant_override("margin_right", 8)
 		$GameOverPanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Menu2.columns = 3
 		$GameOverPanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Menu2/VSeparator.visible = true
 		title.texture = game_over_textures["long"]
