@@ -9,14 +9,14 @@ const _MAIN_SCENES_PATHS = {
 
 var _new_scene_path: String
 var _new_bgm: AudioStream
-var _startup_scene: String = ProjectSettings.get_setting("application/run/main_scene")
 
 @onready var _animation_player: AnimationPlayer = %AnimationPlayer
 @onready var _bgm_player: AudioStreamPlayer = %BGMPlayer
+@onready var _startup_bgm = get_tree().current_scene.get("background_music")
 
 func _ready() -> void:
-	_new_bgm = _get_scene_bgm(_startup_scene)
-	_bgm_player.stream = _new_bgm
+	# If the startup scene has a background music, play it
+	_bgm_player.stream = _startup_bgm
 	_bgm_player.play()
 
 ## Interface to this autoload
