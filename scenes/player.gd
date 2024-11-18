@@ -67,7 +67,6 @@ func apply_gravity(g: float, delta: float) -> void:
 		animated_sprite.rotation = min(MAX_ANGLE, animated_sprite.rotation)
 
 func _set_state(new_state: States) -> void:
-	print_debug(str(new_state))
 	state = new_state
 	state_changed.emit(new_state)
 	match new_state:

@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_56565"]
 [ext_resource type="Texture2D" uid="uid://c8pnuva8msjmx" path="res://assets/player/bird_yellow.png" id="2_4m7os"]
-[ext_resource type="AudioStream" uid="uid://einh7sljyxk" path="res://assets/audio/hit.wav" id="3_pcfdx"]
-[ext_resource type="AudioStream" uid="uid://biqgml8711tfk" path="res://assets/audio/falling.wav" id="4_0er7w"]
-[ext_resource type="AudioStream" uid="uid://dhhoq8h5fj1p3" path="res://assets/audio/wing.wav" id="5_asbrk"]
+[ext_resource type="AudioStream" uid="uid://einh7sljyxk" path="res://assets/audio/sfx/hit.wav" id="3_pcfdx"]
+[ext_resource type="AudioStream" uid="uid://biqgml8711tfk" path="res://assets/audio/sfx/falling.wav" id="4_0er7w"]
+[ext_resource type="AudioStream" uid="uid://dhhoq8h5fj1p3" path="res://assets/audio/sfx/wing.wav" id="5_asbrk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cukm3"]
 radius = 6.4
