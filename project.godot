@@ -30,7 +30,7 @@ ResponsiveUI="*res://autoloads/ResponsiveUI.gd"
 
 window/size/viewport_width=960
 window/size/viewport_height=1280
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=1
 
@@ -44,6 +44,7 @@ version_control/autoload_on_startup=true
 
 [gui]
 
+fonts/dynamic_fonts/use_oversampling=false
 theme/custom="res://assets/ui/ui_theme.tres"
 theme/custom_font="res://assets/ui/font/PeaberryMono.woff2"
 
