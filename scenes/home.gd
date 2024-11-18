@@ -1,5 +1,6 @@
 extends Node
 
+@export var background_music: AudioStream
 @export var play_scene: SceneChanger.MainScenes
 @export var settings: PackedScene
 

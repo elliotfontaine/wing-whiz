@@ -1,5 +1,6 @@
 extends Node
 
+@export var background_music: AudioStream
 @export var obstacle_scene: PackedScene
 @export var player_speed: float = 7.0
 @export var obstacle_y_min := 300.0

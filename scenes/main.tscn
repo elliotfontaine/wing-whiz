@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://d0cs0u7t84vpp"]
+[gd_scene load_steps=12 format=3 uid="uid://d0cs0u7t84vpp"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_lnjsm"]
 [ext_resource type="PackedScene" uid="uid://dxrvyg2gkpkyn" path="res://scenes/player.tscn" id="1_ytolg"]
 [ext_resource type="PackedScene" uid="uid://sr2vyno2c7su" path="res://scenes/obstacle.tscn" id="2_iu102"]
+[ext_resource type="AudioStream" uid="uid://dq85rhuwih1oa" path="res://assets/audio/music/2014 07_ Clement Panchout_ Partycles OST_ Cheerful Title Screen.wav" id="2_kpuad"]
 [ext_resource type="Texture2D" uid="uid://c8e3umou1ee1p" path="res://assets/ui/icons/pause_icon.png" id="6_8bg8p"]
 [ext_resource type="Texture2D" uid="uid://dppvmxfo8dovd" path="res://assets/ui/titles/get_ready.png" id="7_hagmp"]
 [ext_resource type="PackedScene" uid="uid://1g3xfajskdtr" path="res://scenes/game_over_menu.tscn" id="9_v8y3l"]
@@ -15,6 +16,7 @@ size = Vector2(1052, 304.625)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_lnjsm")
+background_music = ExtResource("2_kpuad")
 obstacle_scene = ExtResource("2_iu102")
 
 [node name="Camera2D" type="Camera2D" parent="."]
