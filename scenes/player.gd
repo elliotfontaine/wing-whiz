@@ -83,6 +83,7 @@ func _set_state(new_state: States) -> void:
 			animated_sprite.stop()
 			collision_mask = 4
 			hit_sound.play()
+			Input.vibrate_handheld(300)
 			await get_tree().create_timer(0.05).timeout
 			var fade_in = create_tween()
 			var target_volume = die_sound.volume_db
