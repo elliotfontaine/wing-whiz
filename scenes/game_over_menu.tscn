@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://1g3xfajskdtr"]
+[gd_scene load_steps=16 format=3 uid="uid://1g3xfajskdtr"]
 
 [ext_resource type="Theme" uid="uid://chu8dr8oafu2f" path="res://assets/ui/ui_theme.tres" id="1_bbnub"]
 [ext_resource type="Script" path="res://scenes/game_over_menu.gd" id="2_guksp"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://baq7m3ycwu4eq" path="res://assets/ui/icons/retry_icon.png" id="4_0mtcn"]
 [ext_resource type="Texture2D" uid="uid://cd8fgwrt41qaw" path="res://assets/ui/icons/share_icon.png" id="5_e861r"]
 [ext_resource type="Texture2D" uid="uid://gnaivebymrj3" path="res://assets/ui/icons/home_icon.png" id="6_bim16"]
+[ext_resource type="Script" path="res://classes/SoundButton.gd" id="7_613tr"]
 [ext_resource type="AudioStream" uid="uid://c1abi8ic4gm0l" path="res://assets/audio/sfx/score_pop.wav" id="9_nx5vv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8qcfu"]
@@ -348,6 +349,7 @@ theme_override_font_sizes/font_size = 16
 text = "Retry"
 icon = ExtResource("4_0mtcn")
 icon_alignment = 2
+script = ExtResource("7_613tr")
 
 [node name="VSeparator" type="VSeparator" parent="GameOverPanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Menu2"]
 layout_mode = 2
@@ -366,6 +368,7 @@ size_flags_vertical = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 icon = ExtResource("5_e861r")
+script = ExtResource("7_613tr")
 
 [node name="HomeButton" type="Button" parent="GameOverPanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Menu2/HBoxContainer"]
 unique_name_in_owner = true
@@ -377,6 +380,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 16
 icon = ExtResource("6_bim16")
+script = ExtResource("7_613tr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

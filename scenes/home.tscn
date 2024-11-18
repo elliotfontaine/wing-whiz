@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://qepiltkccigy"]
+[gd_scene load_steps=13 format=3 uid="uid://qepiltkccigy"]
 
 [ext_resource type="Script" path="res://scenes/home.gd" id="1_3v128"]
 [ext_resource type="PackedScene" uid="uid://dqn6nxqgjp5v1" path="res://scenes/settings_menu.tscn" id="2_7in55"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bs6mum74g8cb6" path="res://assets/ui/icons/resume_icon.png" id="5_ihmwa"]
 [ext_resource type="Texture2D" uid="uid://cxgjldiien6it" path="res://assets/ui/titles/wing_whiz.png" id="5_kqgwt"]
 [ext_resource type="Texture2D" uid="uid://ctkkbm8jfha5w" path="res://assets/ui/icons/options_icon.png" id="6_7t71t"]
+[ext_resource type="Script" path="res://classes/SoundButton.gd" id="8_6jo47"]
 [ext_resource type="PackedScene" uid="uid://38vvjgmqvsgo" path="res://scenes/parallax_background.tscn" id="8_poabo"]
 [ext_resource type="PackedScene" uid="uid://dkhuv62ytrwfk" path="res://scenes/parallax_foreground.tscn" id="9_y7uro"]
 
@@ -68,6 +69,7 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 text = "Play"
 icon = ExtResource("5_ihmwa")
+script = ExtResource("8_6jo47")
 
 [node name="SettingsButton" type="Button" parent="UI/MainMenu/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -76,6 +78,7 @@ size_flags_horizontal = 4
 focus_mode = 0
 mouse_default_cursor_shape = 2
 icon = ExtResource("6_7t71t")
+script = ExtResource("8_6jo47")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2

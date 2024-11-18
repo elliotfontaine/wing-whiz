@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://d0cs0u7t84vpp"]
+[gd_scene load_steps=13 format=3 uid="uid://d0cs0u7t84vpp"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_lnjsm"]
 [ext_resource type="PackedScene" uid="uid://dxrvyg2gkpkyn" path="res://scenes/player.tscn" id="1_ytolg"]
 [ext_resource type="PackedScene" uid="uid://sr2vyno2c7su" path="res://scenes/obstacle.tscn" id="2_iu102"]
 [ext_resource type="AudioStream" uid="uid://dq85rhuwih1oa" path="res://assets/audio/music/2014 07_ Clement Panchout_ Partycles OST_ Cheerful Title Screen.wav" id="2_kpuad"]
 [ext_resource type="Texture2D" uid="uid://c8e3umou1ee1p" path="res://assets/ui/icons/pause_icon.png" id="6_8bg8p"]
+[ext_resource type="Script" path="res://classes/SoundButton.gd" id="7_ci1mp"]
 [ext_resource type="Texture2D" uid="uid://dppvmxfo8dovd" path="res://assets/ui/titles/get_ready.png" id="7_hagmp"]
 [ext_resource type="PackedScene" uid="uid://1g3xfajskdtr" path="res://scenes/game_over_menu.tscn" id="9_v8y3l"]
 [ext_resource type="AudioStream" uid="uid://c1abi8ic4gm0l" path="res://assets/audio/sfx/score_pop.wav" id="9_wt5j5"]
@@ -80,11 +81,14 @@ unique_name_in_owner = true
 process_mode = 3
 offset_left = 16.0
 offset_top = 16.0
+offset_right = 44.0
+offset_bottom = 50.0
 scale = Vector2(5, 5)
 focus_mode = 0
 mouse_default_cursor_shape = 2
 action_mode = 0
 icon = ExtResource("6_8bg8p")
+script = ExtResource("7_ci1mp")
 
 [node name="Flash" type="ColorRect" parent="UI"]
 unique_name_in_owner = true
