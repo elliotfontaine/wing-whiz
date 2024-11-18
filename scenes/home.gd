@@ -1,6 +1,6 @@
 extends Node
 
-var play_scene: String = "res://scenes/main.tscn"
+@export var play_scene: SceneChanger.MainScenes
 @export var settings: PackedScene
 
 var game_title_textures = {
@@ -12,6 +12,7 @@ var game_title_textures = {
 @onready var camera: Camera2D = %Camera2D
 @onready var main_menu: PanelContainer = %MainMenu
 @onready var play_button: Button = %PlayButton
+@onready var settings_button: Button = %SettingsButton
 @onready var title: TextureRect = %Title
 @onready var camera_player_offset = camera.position.x - player.position.x
 

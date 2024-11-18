@@ -11,8 +11,8 @@ const THRESHOLDS := {
 	"platinum": 500
 }
 
-const RETRY_SCENE: String = "res://scenes/main.tscn"
-const MENU_SCENE: String = "res://scenes/home.tscn"
+@export var retry_scene: SceneChanger.MainScenes
+@export var home_scene: SceneChanger.MainScenes
 
 const TWITTER_SHARE_URL := "https://twitter.com/intent/tweet?text="
 var TWITTER_SHARE_TEMPLATE := "✨ I achieved a score of %s in Wing Whiz ! ✨\n
@@ -43,8 +43,8 @@ var game_over_textures = {
 func _ready() -> void:
 	score_label.text = str(0)
 	medal.texture = null
-	retry_button.pressed.connect(SceneChanger.change_to.bind(RETRY_SCENE))
-	home_button.pressed.connect(SceneChanger.change_to.bind(MENU_SCENE))
+	retry_button.pressed.connect(SceneChanger.change_to.bind(retry_scene))
+	home_button.pressed.connect(SceneChanger.change_to.bind(home_scene))
 	ResponsiveUI.ratio_changed.connect(_on_ratio_changed)
 	_on_ratio_changed(ResponsiveUI.ratio)
 
