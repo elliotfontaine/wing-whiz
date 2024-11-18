@@ -1,0 +1,289 @@
+[gd_scene load_steps=13 format=3 uid="uid://dqn6nxqgjp5v1"]
+
+[ext_resource type="Script" path="res://scenes/settings_menu.gd" id="1_3ww84"]
+[ext_resource type="Texture2D" uid="uid://062pso3ijr2y" path="res://assets/ui/icons/sound_low_icon.png" id="2_w7s67"]
+[ext_resource type="Texture2D" uid="uid://bortt1cnxmw1n" path="res://assets/ui/icons/music_icon.png" id="3_cd88f"]
+[ext_resource type="Texture2D" uid="uid://3yxxim8rosov" path="res://assets/ui/icons/sfx_icon.png" id="4_ib3ly"]
+[ext_resource type="PackedScene" uid="uid://dm5q706k4erat" path="res://scenes/volume_slider.tscn" id="5_h0f60"]
+[ext_resource type="Texture2D" uid="uid://devgg8qq5xvhq" path="res://assets/ui/components/buttons/close_button.png" id="6_8lbgp"]
+[ext_resource type="Texture2D" uid="uid://b4v1gwraqexsa" path="res://assets/ui/components/buttons/close_button_pressed.png" id="7_hnwnh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pcp2u"]
+
+[sub_resource type="Animation" id="Animation_hedsp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Backdrop:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.282353, 0.290196, 0.466667, 0.27451)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scaler:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6b15r"]
+resource_name = "appear"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Backdrop:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.378929, 1),
+"update": 0,
+"values": [Color(0.282353, 0.290196, 0.466667, 0), Color(0.282353, 0.290196, 0.466667, 0.27451)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scaler:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.4),
+"transitions": PackedFloat32Array(0.378929, 1.5, 1),
+"update": 0,
+"values": [Vector2(0.01, 0.01), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_m2xwy"]
+resource_name = "disappear"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5ho5q"]
+_data = {
+"RESET": SubResource("Animation_hedsp"),
+"appear": SubResource("Animation_6b15r"),
+"disappear": SubResource("Animation_m2xwy")
+}
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3ww84")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.282353, 0.290196, 0.466667, 0.27451)
+
+[node name="Scaler" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Scaler"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+pivot_offset = Vector2(80, 80)
+
+[node name="TabContainer" type="TabContainer" parent="Scaler/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+current_tab = 0
+tab_focus_mode = 0
+
+[node name="Au" type="Control" parent="Scaler/MarginContainer/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Scaler/MarginContainer/TabContainer/Au"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Title" type="Label" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Audio"
+horizontal_alignment = 1
+
+[node name="HSeparatorVisible" type="HSeparator" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HSeparatorHidden" type="HSeparator" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxEmpty_pcp2u")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Labels" type="VBoxContainer" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Labels"]
+layout_mode = 2
+alignment = 2
+
+[node name="Global" type="Label" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Labels/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Global
+"
+horizontal_alignment = 2
+
+[node name="Icon" type="TextureRect" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Labels/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_w7s67")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Labels"]
+layout_mode = 2
+alignment = 2
+
+[node name="Music" type="Label" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Labels/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Music
+"
+horizontal_alignment = 2
+
+[node name="Icon" type="TextureRect" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Labels/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("3_cd88f")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Labels"]
+layout_mode = 2
+alignment = 2
+
+[node name="SFX" type="Label" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Labels/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SFX"
+horizontal_alignment = 2
+
+[node name="Icon" type="TextureRect" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Labels/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("4_ib3ly")
+
+[node name="VSeparator" type="VSeparator" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Sliders" type="VBoxContainer" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="GlobalVolumeSlider" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Sliders" instance=ExtResource("5_h0f60")]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+value = 0.5
+
+[node name="MusicVolumeSlider" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Sliders" instance=ExtResource("5_h0f60")]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 1.0
+bus_name = "Music"
+
+[node name="SFXVolumeSlider" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Sliders" instance=ExtResource("5_h0f60")]
+layout_mode = 2
+size_flags_horizontal = 3
+bus_name = "SFX"
+
+[node name="Ac" type="Control" parent="Scaler/MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Scaler/MarginContainer/TabContainer/Ac"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Title" type="Label" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Account"
+horizontal_alignment = 1
+
+[node name="HSeparatorVisible" type="HSeparator" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HSeparatorHidden" type="HSeparator" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxEmpty_pcp2u")
+
+[node name="CenterContainer" type="CenterContainer" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = "Coming soon !"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="CloseButton" type="TextureButton" parent="Scaler/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture_normal = ExtResource("6_8lbgp")
+texture_pressed = ExtResource("7_hnwnh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_5ho5q")
+}

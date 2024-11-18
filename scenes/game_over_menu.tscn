@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://bjf2wgs2accqm" path="res://assets/ui/medals/medal_hole.png" id="2_t0ues"]
 [ext_resource type="Texture2D" uid="uid://dy2q855wm30qr" path="res://assets/ui/titles/game_over.png" id="3_4w8kq"]
 [ext_resource type="Texture2D" uid="uid://cusro2vbuj0o" path="res://assets/ui/medals/bronze_3.png" id="3_fhauw"]
-[ext_resource type="Texture2D" uid="uid://baq7m3ycwu4eq" path="res://assets/ui/buttons/retry_icon.png" id="4_0mtcn"]
-[ext_resource type="Texture2D" uid="uid://cd8fgwrt41qaw" path="res://assets/ui/buttons/share_icon.png" id="5_e861r"]
-[ext_resource type="Texture2D" uid="uid://gnaivebymrj3" path="res://assets/ui/buttons/home_icon.png" id="6_bim16"]
+[ext_resource type="Texture2D" uid="uid://baq7m3ycwu4eq" path="res://assets/ui/icons/retry_icon.png" id="4_0mtcn"]
+[ext_resource type="Texture2D" uid="uid://cd8fgwrt41qaw" path="res://assets/ui/icons/share_icon.png" id="5_e861r"]
+[ext_resource type="Texture2D" uid="uid://gnaivebymrj3" path="res://assets/ui/icons/home_icon.png" id="6_bim16"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8qcfu"]
 

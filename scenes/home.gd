@@ -1,6 +1,7 @@
 extends Node
 
 var play_scene: String = "res://scenes/main.tscn"
+@export var settings: PackedScene
 
 var game_title_textures = {
 	"long": preload("res://assets/ui/titles/wing_whiz.png"),
@@ -16,6 +17,7 @@ var game_title_textures = {
 
 func _ready() -> void:
 	play_button.pressed.connect(SceneChanger.change_to.bind(play_scene))
+	settings_button.pressed.connect(_on_settings_pressed)
 	ResponsiveUI.ratio_changed.connect(_on_ratio_changed)
 	_on_ratio_changed(ResponsiveUI.ratio)
 	player.state = player.States.AUTO
@@ -23,6 +25,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	player.position.x += 300 * delta
 	camera.position.x = player.position.x + camera_player_offset
+
+func _on_settings_pressed() -> void:
+	var settings_instance = settings.instantiate()
+	$UI.add_child(settings_instance)
+	
 
 func _on_ratio_changed(ratio) -> void:
 	if ratio < 0.8:

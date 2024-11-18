@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_lnjsm"]
 [ext_resource type="PackedScene" uid="uid://dxrvyg2gkpkyn" path="res://scenes/player.tscn" id="1_ytolg"]
 [ext_resource type="PackedScene" uid="uid://sr2vyno2c7su" path="res://scenes/obstacle.tscn" id="2_iu102"]
-[ext_resource type="Texture2D" uid="uid://c8e3umou1ee1p" path="res://assets/ui/buttons/pause_icon.png" id="6_8bg8p"]
+[ext_resource type="Texture2D" uid="uid://c8e3umou1ee1p" path="res://assets/ui/icons/pause_icon.png" id="6_8bg8p"]
 [ext_resource type="Texture2D" uid="uid://dppvmxfo8dovd" path="res://assets/ui/titles/get_ready.png" id="7_hagmp"]
 [ext_resource type="PackedScene" uid="uid://1g3xfajskdtr" path="res://scenes/game_over_menu.tscn" id="9_v8y3l"]
-[ext_resource type="AudioStream" uid="uid://c1abi8ic4gm0l" path="res://assets/audio/score_pop.wav" id="9_wt5j5"]
+[ext_resource type="AudioStream" uid="uid://c1abi8ic4gm0l" path="res://assets/audio/sfx/score_pop.wav" id="9_wt5j5"]
 [ext_resource type="PackedScene" uid="uid://38vvjgmqvsgo" path="res://scenes/parallax_background.tscn" id="10_3bci0"]
 [ext_resource type="PackedScene" uid="uid://dkhuv62ytrwfk" path="res://scenes/parallax_foreground.tscn" id="11_26872"]
 

@@ -1,17 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://qepiltkccigy"]
+[gd_scene load_steps=11 format=3 uid="uid://qepiltkccigy"]
 
 [ext_resource type="Script" path="res://scenes/home.gd" id="1_3v128"]
+[ext_resource type="PackedScene" uid="uid://dqn6nxqgjp5v1" path="res://scenes/settings_menu.tscn" id="2_7in55"]
 [ext_resource type="PackedScene" uid="uid://cni3ljkwupbfc" path="res://scenes/background.tscn" id="3_jun4f"]
 [ext_resource type="PackedScene" uid="uid://c8aab5lythc2" path="res://scenes/ground.tscn" id="3_ke246"]
 [ext_resource type="PackedScene" uid="uid://dxrvyg2gkpkyn" path="res://scenes/player.tscn" id="5_6675b"]
-[ext_resource type="Texture2D" uid="uid://bs6mum74g8cb6" path="res://assets/ui/buttons/resume_icon.png" id="5_ihmwa"]
+[ext_resource type="Texture2D" uid="uid://bs6mum74g8cb6" path="res://assets/ui/icons/resume_icon.png" id="5_ihmwa"]
 [ext_resource type="Texture2D" uid="uid://cxgjldiien6it" path="res://assets/ui/titles/wing_whiz.png" id="5_kqgwt"]
-[ext_resource type="Texture2D" uid="uid://ctkkbm8jfha5w" path="res://assets/ui/buttons/options_icon.png" id="6_7t71t"]
+[ext_resource type="Texture2D" uid="uid://ctkkbm8jfha5w" path="res://assets/ui/icons/options_icon.png" id="6_7t71t"]
 [ext_resource type="PackedScene" uid="uid://38vvjgmqvsgo" path="res://scenes/parallax_background.tscn" id="8_poabo"]
 [ext_resource type="PackedScene" uid="uid://dkhuv62ytrwfk" path="res://scenes/parallax_foreground.tscn" id="9_y7uro"]
 
 [node name="Home" type="Node"]
 script = ExtResource("1_3v128")
+settings = ExtResource("2_7in55")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
@@ -64,7 +66,8 @@ mouse_default_cursor_shape = 2
 text = "Play"
 icon = ExtResource("5_ihmwa")
 
-[node name="OptionsButton" type="Button" parent="UI/MainMenu/MarginContainer/VBoxContainer"]
+[node name="SettingsButton" type="Button" parent="UI/MainMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 focus_mode = 0
