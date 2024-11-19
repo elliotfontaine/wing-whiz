@@ -8,7 +8,8 @@ const TAB_ICONS := {
 @onready var margin_container: MarginContainer = %MarginContainer
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var tab_container: TabContainer = %TabContainer
-@onready var close_button: TextureButton = %CloseButton
+@onready var close_button_1: TextureButton = %CloseButton1
+@onready var close_button_2: TextureButton = %CloseButton2
 @onready var global: Label = %Global
 @onready var music: Label = %Music
 @onready var sfx: Label = %SFX
@@ -21,7 +22,8 @@ func _ready() -> void:
 	tab_container.set_tab_icon(1, TAB_ICONS.account)
 	tab_container.set_tab_title(1, "")
 	tab_container.set_tab_tooltip(1, "Account")
-	close_button.pressed.connect(_on_close_pressed)
+	close_button_1.pressed.connect(_on_close_pressed)
+	close_button_2.pressed.connect(_on_close_pressed)
 	ResponsiveUI.ratio_changed.connect(_on_ratio_changed)
 	_on_ratio_changed(ResponsiveUI.ratio)
 	animation_player.play("appear")
@@ -35,8 +37,8 @@ func _on_close_pressed() -> void:
 func _on_ratio_changed(ratio: float) -> void:
 	if ratio < 0.8:
 		margin_container.scale = Vector2(7.5, 7.5)
-		margin_container.add_theme_constant_override("margin_left", 20)
-		margin_container.add_theme_constant_override("margin_right", 20)
+		margin_container.add_theme_constant_override("margin_left", 35)
+		margin_container.add_theme_constant_override("margin_right", 35)
 		global.visible = false
 		music.visible = false
 		sfx.visible = false

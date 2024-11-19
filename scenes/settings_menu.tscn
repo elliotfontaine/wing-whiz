@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dqn6nxqgjp5v1"]
+[gd_scene load_steps=15 format=3 uid="uid://dqn6nxqgjp5v1"]
 
 [ext_resource type="Script" path="res://scenes/settings_menu.gd" id="1_3ww84"]
 [ext_resource type="Texture2D" uid="uid://062pso3ijr2y" path="res://assets/ui/icons/sound_low_icon.png" id="2_w7s67"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://dm5q706k4erat" path="res://scenes/volume_slider.tscn" id="5_h0f60"]
 [ext_resource type="Texture2D" uid="uid://devgg8qq5xvhq" path="res://assets/ui/components/buttons/close_button.png" id="6_8lbgp"]
 [ext_resource type="Texture2D" uid="uid://b4v1gwraqexsa" path="res://assets/ui/components/buttons/close_button_pressed.png" id="7_hnwnh"]
+[ext_resource type="Script" path="res://classes/SoundTextureButton.gd" id="8_wjdrk"]
+[ext_resource type="AudioStream" uid="uid://qy3dbg5o23ux" path="res://assets/audio/sfx/switch8.ogg" id="9_74tcd"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pcp2u"]
 
@@ -111,14 +113,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -80.0
+offset_left = -89.0
 offset_top = -80.0
-offset_right = 80.0
+offset_right = 89.0
 offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(5, 5)
-pivot_offset = Vector2(80, 80)
+pivot_offset = Vector2(89, 80)
 
 [node name="TabContainer" type="TabContainer" parent="Scaler/MarginContainer"]
 unique_name_in_owner = true
@@ -126,17 +128,16 @@ layout_mode = 2
 current_tab = 0
 tab_focus_mode = 0
 
-[node name="Au" type="Control" parent="Scaler/MarginContainer/TabContainer"]
+[node name="Au" type="MarginContainer" parent="Scaler/MarginContainer/TabContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
 metadata/_tab_index = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="Scaler/MarginContainer/TabContainer/Au"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer"]
 layout_mode = 2
@@ -237,18 +238,28 @@ size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 bus_name = "SFX"
 
-[node name="Ac" type="Control" parent="Scaler/MarginContainer/TabContainer"]
+[node name="CloseButton1" type="TextureButton" parent="Scaler/MarginContainer/TabContainer/Au"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("6_8lbgp")
+texture_pressed = ExtResource("7_hnwnh")
+script = ExtResource("8_wjdrk")
+sound = ExtResource("9_74tcd")
+
+[node name="Ac" type="MarginContainer" parent="Scaler/MarginContainer/TabContainer"]
 visible = false
 layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
 metadata/_tab_index = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Scaler/MarginContainer/TabContainer/Ac"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer"]
 layout_mode = 2
@@ -277,14 +288,16 @@ text = "Coming soon !"
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="CloseButton" type="TextureButton" parent="Scaler/MarginContainer"]
+[node name="CloseButton2" type="TextureButton" parent="Scaler/MarginContainer/TabContainer/Ac"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
+size_flags_horizontal = 8
+size_flags_vertical = 0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("6_8lbgp")
 texture_pressed = ExtResource("7_hnwnh")
+script = ExtResource("8_wjdrk")
+sound = ExtResource("9_74tcd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

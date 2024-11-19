@@ -1,17 +1,15 @@
-[gd_scene load_steps=18 format=3 uid="uid://cqyfbk6qarwto"]
+[gd_scene load_steps=16 format=3 uid="uid://cqyfbk6qarwto"]
 
 [ext_resource type="Script" path="res://scenes/pause_menu.gd" id="1_q8k2p"]
 [ext_resource type="Texture2D" uid="uid://ctkkbm8jfha5w" path="res://assets/ui/icons/options_icon.png" id="2_0sp44"]
 [ext_resource type="Texture2D" uid="uid://gnaivebymrj3" path="res://assets/ui/icons/home_icon.png" id="2_2mhk8"]
 [ext_resource type="PackedScene" uid="uid://dqn6nxqgjp5v1" path="res://scenes/settings_menu.tscn" id="2_6br4f"]
-[ext_resource type="Texture2D" uid="uid://062pso3ijr2y" path="res://assets/ui/icons/sound_low_icon.png" id="2_82lsh"]
-[ext_resource type="Texture2D" uid="uid://bortt1cnxmw1n" path="res://assets/ui/icons/music_icon.png" id="3_4ehos"]
 [ext_resource type="Script" path="res://classes/SoundButton.gd" id="3_h2a01"]
 [ext_resource type="Texture2D" uid="uid://baq7m3ycwu4eq" path="res://assets/ui/icons/retry_icon.png" id="3_tnmr4"]
-[ext_resource type="Texture2D" uid="uid://3yxxim8rosov" path="res://assets/ui/icons/sfx_icon.png" id="4_f0ly7"]
-[ext_resource type="PackedScene" uid="uid://dm5q706k4erat" path="res://scenes/volume_slider.tscn" id="5_gp12w"]
 [ext_resource type="Texture2D" uid="uid://devgg8qq5xvhq" path="res://assets/ui/components/buttons/close_button.png" id="6_ugi3k"]
 [ext_resource type="Texture2D" uid="uid://b4v1gwraqexsa" path="res://assets/ui/components/buttons/close_button_pressed.png" id="7_8b0qf"]
+[ext_resource type="Script" path="res://classes/SoundTextureButton.gd" id="9_idxex"]
+[ext_resource type="AudioStream" uid="uid://qy3dbg5o23ux" path="res://assets/audio/sfx/switch8.ogg" id="10_dkqg6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pcp2u"]
 
@@ -130,7 +128,7 @@ pivot_offset = Vector2(80, 80)
 
 [node name="PanelContainer" type="PanelContainer" parent="Scaler/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="Scaler/MarginContainer/PanelContainer"]
 layout_mode = 2
@@ -154,32 +152,32 @@ layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxEmpty_pcp2u")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Scaler/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Buttons" type="HFlowContainer" parent="Scaler/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 3
-theme_override_constants/separation = 1
 alignment = 1
 
-[node name="SettingsButton" type="Button" parent="Scaler/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="SettingsButton" type="Button" parent="Scaler/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Buttons"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 focus_mode = 0
 text = "Settings"
 icon = ExtResource("2_0sp44")
 script = ExtResource("3_h2a01")
 
-[node name="RestartButton" type="Button" parent="Scaler/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="RestartButton" type="Button" parent="Scaler/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Buttons"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 focus_mode = 0
 text = "Restart"
 icon = ExtResource("3_tnmr4")
 script = ExtResource("3_h2a01")
 
-[node name="HomeButton" type="Button" parent="Scaler/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="HomeButton" type="Button" parent="Scaler/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Buttons"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 focus_mode = 0
 text = "Menu"
 icon = ExtResource("2_2mhk8")
@@ -190,168 +188,16 @@ layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxEmpty_pcp2u")
 
-[node name="TabContainer" type="TabContainer" parent="Scaler/MarginContainer"]
-visible = false
-layout_mode = 2
-current_tab = 0
-tab_focus_mode = 0
-
-[node name="Au" type="Control" parent="Scaler/MarginContainer/TabContainer"]
-layout_mode = 2
-metadata/_tab_index = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="Scaler/MarginContainer/TabContainer/Au"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="Title" type="Label" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Audio"
-horizontal_alignment = 1
-
-[node name="HSeparatorVisible" type="HSeparator" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="HSeparatorHidden" type="HSeparator" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-theme_override_styles/separator = SubResource("StyleBoxEmpty_pcp2u")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Labels" type="VBoxContainer" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Labels"]
-layout_mode = 2
-alignment = 2
-
-[node name="Global" type="Label" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Labels/HBoxContainer"]
+[node name="CloseButton" type="TextureButton" parent="Scaler/MarginContainer/PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Global
-"
-horizontal_alignment = 2
-
-[node name="Icon" type="TextureRect" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Labels/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("2_82lsh")
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Labels"]
-layout_mode = 2
-alignment = 2
-
-[node name="Music" type="Label" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Labels/HBoxContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Music
-"
-horizontal_alignment = 2
-
-[node name="Icon" type="TextureRect" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Labels/HBoxContainer2"]
-layout_mode = 2
-texture = ExtResource("3_4ehos")
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Labels"]
-layout_mode = 2
-alignment = 2
-
-[node name="SFX" type="Label" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Labels/HBoxContainer3"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "SFX"
-horizontal_alignment = 2
-
-[node name="Icon" type="TextureRect" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Labels/HBoxContainer3"]
-layout_mode = 2
-texture = ExtResource("4_f0ly7")
-
-[node name="VSeparator" type="VSeparator" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-
-[node name="Sliders" type="VBoxContainer" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 8
-alignment = 1
-
-[node name="GlobalVolumeSlider" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Sliders" instance=ExtResource("5_gp12w")]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-value = 0.5
-
-[node name="MusicVolumeSlider" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Sliders" instance=ExtResource("5_gp12w")]
-layout_mode = 2
-size_flags_horizontal = 3
-value = 1.0
-bus_name = "Music"
-
-[node name="SFXVolumeSlider" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Sliders" instance=ExtResource("5_gp12w")]
-layout_mode = 2
-size_flags_horizontal = 3
-bus_name = "SFX"
-
-[node name="Ac" type="Control" parent="Scaler/MarginContainer/TabContainer"]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="Scaler/MarginContainer/TabContainer/Ac"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="Title" type="Label" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Account"
-horizontal_alignment = 1
-
-[node name="HSeparatorVisible" type="HSeparator" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="HSeparatorHidden" type="HSeparator" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-theme_override_styles/separator = SubResource("StyleBoxEmpty_pcp2u")
-
-[node name="CenterContainer" type="CenterContainer" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer/CenterContainer"]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-text = "Coming soon !"
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="CloseButton" type="TextureButton" parent="Scaler/MarginContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
+size_flags_horizontal = 8
+size_flags_vertical = 0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("6_ugi3k")
 texture_pressed = ExtResource("7_8b0qf")
+script = ExtResource("9_idxex")
+sound = ExtResource("10_dkqg6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
