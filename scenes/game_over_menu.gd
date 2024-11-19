@@ -5,10 +5,10 @@ const BEST_SCORE_TEMPLATE := "[right]%s[/right]"
 const NEW_BEST_SCORE_SHORT_TEMPLATE := "[right][rainbow sat=0.6 val=0.9][wave amp=15.0 freq=5.0]%s[/wave][/rainbow][/right]"
 
 const THRESHOLDS := {
-	"bronze": 5,
+	"bronze": 10,
 	"silver": 30,
 	"gold": 100,
-	"platinum": 500
+	"platinum": 300
 }
 
 @export var retry_scene: SceneChanger.MainScenes
@@ -20,10 +20,10 @@ Download or Play the game at{itch}".format({"itch": Globals.ITCHIO_URL})
 
 #TODO: replace with other medals when assets are made
 var medal_textures := {
-	"bronze": preload("res://assets/ui/medals/bronze_2.png"),
-	"silver": preload("res://assets/ui/medals/bronze_2.png"),
-	"gold": preload("res://assets/ui/medals/bronze_2.png"),
-	"platinum": preload("res://assets/ui/medals/bronze_2.png")
+	"bronze": preload("res://assets/ui/medals/medal_V4_bronze.png"),
+	"silver": preload("res://assets/ui/medals/medal_V4_silver.png"),
+	"gold": preload("res://assets/ui/medals/medal_V4_gold.png"),
+	"platinum": preload("res://assets/ui/medals/medal_V4_platinum.png")
 }
 
 var game_over_textures = {

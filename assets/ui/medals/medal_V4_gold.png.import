@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xs2u3l5whw2a"
-path="res://.godot/imported/bronze_2.png-121a5c4b9c15a921ce30225fe801db3c.ctex"
+uid="uid://cbexl5g4kfvgl"
+path="res://.godot/imported/medal_V4_gold.png-d7d8dc810758d2a3c69488243c753792.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/medals/bronze_2.png"
-dest_files=["res://.godot/imported/bronze_2.png-121a5c4b9c15a921ce30225fe801db3c.ctex"]
+source_file="res://assets/ui/medals/medal_V4_gold.png"
+dest_files=["res://.godot/imported/medal_V4_gold.png-d7d8dc810758d2a3c69488243c753792.ctex"]
 
 [params]
 
