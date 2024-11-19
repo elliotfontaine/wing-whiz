@@ -221,17 +221,20 @@ alignment = 1
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
 value = 0.5
 
 [node name="MusicVolumeSlider" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Sliders" instance=ExtResource("5_h0f60")]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
 value = 1.0
 bus_name = "Music"
 
 [node name="SFXVolumeSlider" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Sliders" instance=ExtResource("5_h0f60")]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
 bus_name = "SFX"
 
 [node name="Ac" type="Control" parent="Scaler/MarginContainer/TabContainer"]
@@ -279,6 +282,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("6_8lbgp")
 texture_pressed = ExtResource("7_hnwnh")
 

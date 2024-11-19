@@ -349,6 +349,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("6_ugi3k")
 texture_pressed = ExtResource("7_8b0qf")
 
