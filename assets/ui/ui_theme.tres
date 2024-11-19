@@ -39,6 +39,7 @@ Button/colors/font_pressed_color = Color(1, 1, 1, 1)
 Button/constants/h_separation = 4
 Button/constants/outline_size = 3
 Button/font_sizes/font_size = 16
+Button/styles/disabled = ExtResource("1_aqwjt")
 Button/styles/hover = ExtResource("1_aqwjt")
 Button/styles/normal = ExtResource("1_aqwjt")
 Button/styles/pressed = ExtResource("2_8a3f3")

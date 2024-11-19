@@ -145,6 +145,7 @@ func _on_player_state_changed(new_state) -> void:
 			timer.start()
 		States.DEAD:
 			timer.stop()
+			pause_button.disabled = true
 			create_tween().tween_property(pause_button, "modulate:a", 0.0, 0.4)
 			create_tween().tween_property(score_label, "modulate:a", 0.0, 0.4)
 			
