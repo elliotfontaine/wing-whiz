@@ -1,11 +1,14 @@
 extends Node
 
+@export var debug: bool = false
 @export var background_music: AudioStream
+@export var pause_menu: PackedScene
 @export var obstacle_scene: PackedScene
+@export_category("Gameplay")
 @export var player_speed: float = 7.0
 @export var obstacle_y_min := 300.0
 @export var obstacle_y_max := 800.0
-@export var debug: bool = false
+
 
 var obstacles: Array[Node2D]
 var upcoming_obstacles: Array[Node2D]
@@ -74,10 +77,17 @@ func draw_debug_mobile():
 
 func _notification(what: int):
 	if what == NOTIFICATION_APPLICATION_FOCUS_OUT and player.state == States.FLYING:
-		get_tree().paused = true
+		_on_pause_pressed()
 
 func _on_pause_pressed() -> void:
-	get_tree().paused = !get_tree().paused
+	# SceneTree.paused is (un)set by the pause menu itself
+	var pause_menu_instance = pause_menu.instantiate()
+	pause_button.add_sibling(pause_menu_instance)
+	pause_menu_instance.closed.connect(_on_pause_menu_closed)
+
+func _on_pause_menu_closed() -> void:
+	pass
+	# Add countdown to resume. Maybe from the pause menu itself?
 
 func _physics_process(delta: float) -> void:
 	ground_body.position.x = player.position.x
