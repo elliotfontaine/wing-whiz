@@ -2,7 +2,7 @@
 extends HSlider
 class_name VolumeSlider
 
-enum AudioBus {}
+enum AudioBus {Master = 0}
 @export var audio_bus: AudioBus = 0 as AudioBus
 @onready var bus_name: String = AudioServer.get_bus_name(audio_bus)
 
@@ -29,7 +29,7 @@ func _validate_property(property: Dictionary):
 # @tool
 # extends HSlider
 #
-# enum AudioBus {}
+# enum AudioBus {Master = 0}
 # @export var audio_bus: AudioBus = 0 as AudioBus
 # @onready var bus_name: String = AudioServer.get_bus_name(audio_bus)
 #
