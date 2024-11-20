@@ -140,8 +140,8 @@ func _on_player_state_changed(new_state) -> void:
 			pause_button.visible = true
 			create_tween().tween_property(pause_button, "modulate:a", 1.0, 0.2)
 			create_tween().tween_property(score_label, "modulate:a", 1.0, 0.2)
-			create_tween().tween_property(title, "modulate:a", 0.0, 0.2)
-			create_tween().tween_property(title, "position:y", title.position.y - 40, 0.2)
+			create_tween().tween_property(title, "modulate:a", 0.0, 0.3)
+			create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN).tween_property(title, "position:y", title.position.y - 90, 0.4)
 			timer.start()
 		States.DEAD:
 			timer.stop()

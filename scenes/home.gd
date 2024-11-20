@@ -18,7 +18,7 @@ var game_title_textures = {
 @onready var camera_player_offset = camera.position.x - player.position.x
 
 func _ready() -> void:
-	play_button.pressed.connect(SceneChanger.change_to.bind(play_scene))
+	play_button.pressed.connect(_on_play_pressed)
 	settings_button.pressed.connect(_on_settings_pressed)
 	ResponsiveUI.ratio_changed.connect(_on_ratio_changed)
 	_on_ratio_changed(ResponsiveUI.ratio)
@@ -27,6 +27,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	player.position.x += 300 * delta
 	camera.position.x = player.position.x + camera_player_offset
+
+func _on_play_pressed() -> void:
+	var menu_out = get_tree().create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
+	menu_out.tween_property(main_menu, "position:y", main_menu.position.y + 500, 0.5)
+	SceneChanger.change_to(play_scene)
 
 func _on_settings_pressed() -> void:
 	var settings_instance = settings.instantiate()
