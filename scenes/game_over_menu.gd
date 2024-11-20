@@ -91,13 +91,13 @@ func _on_share_pressed(score: int) -> void:
 
 func _on_ratio_changed(ratio) -> void:
 	if ratio < 0.8:
-		$GameOverPanel/MarginContainer.scale = Vector2(7.5, 7.5)
+		$GameOverPanel/MarginContainer.scale = Vector2(7.0, 7.0)
 		$GameOverPanel/MarginContainer.add_theme_constant_override("margin_left", 35)
 		$GameOverPanel/MarginContainer.add_theme_constant_override("margin_right", 35)
 		$GameOverPanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Menu2.columns = 1
 		$GameOverPanel/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Menu2/VSeparator.visible = false
 		title.texture = game_over_textures["short"]
-		title.scale = Vector2(7.5, 7.5)
+		title.scale = Vector2(7.0, 7.0)
 		title.offset_bottom = -575
 	else:
 		$GameOverPanel/MarginContainer.scale = Vector2(5, 5)

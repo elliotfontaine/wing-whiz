@@ -40,10 +40,10 @@ func _on_settings_pressed() -> void:
 
 func _on_ratio_changed(ratio) -> void:
 	if ratio < 0.8:
-		camera.zoom = Vector2(1.5, 1.5)
-		main_menu.scale = Vector2(7.5, 7.5)
+		camera.zoom = Vector2(1.4, 1.4)
+		main_menu.scale = Vector2(7.0, 7.0)
 		#score_label.scale = Vector2(15, 15)
-		title.scale = Vector2(7.5, 7.5)
+		title.scale = Vector2(7.0, 7.0)
 		title.texture = game_title_textures["short"]
 	else:
 		camera.zoom = Vector2(1.0, 1.0)

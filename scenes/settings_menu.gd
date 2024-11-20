@@ -36,9 +36,9 @@ func _on_close_pressed() -> void:
 
 func _on_ratio_changed(ratio: float) -> void:
 	if ratio < 0.8:
-		margin_container.scale = Vector2(7.5, 7.5)
-		margin_container.add_theme_constant_override("margin_left", 35)
-		margin_container.add_theme_constant_override("margin_right", 35)
+		margin_container.scale = Vector2(7.0, 7.0)
+		margin_container.add_theme_constant_override("margin_left", 30)
+		margin_container.add_theme_constant_override("margin_right", 30)
 		global.visible = false
 		music.visible = false
 		sfx.visible = false
