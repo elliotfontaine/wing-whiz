@@ -34,6 +34,7 @@ var get_ready_textures = {
 @onready var game_over_menu: Control = %GameOverMenu
 @onready var point_sound: AudioStreamPlayer = %PointSound
 @onready var camera: Camera2D = %Camera2D
+@onready var shaker_component2d: ShakerComponent2D = %ShakerComponent2D
 @onready var ground_body: PhysicsBody2D = %GroundSB2D
 @onready var flash: ColorRect = %Flash
 @onready var best_score = SaveManager.best_score
@@ -148,7 +149,7 @@ func _on_player_state_changed(new_state) -> void:
 			pause_button.disabled = true
 			create_tween().tween_property(pause_button, "modulate:a", 0.0, 0.4)
 			create_tween().tween_property(score_label, "modulate:a", 0.0, 0.4)
-			
+			shaker_component2d.play_shake()
 			var flash_tween = get_tree().create_tween().set_ease(Tween.EASE_OUT_IN)
 			flash_tween.tween_property(flash, "color:a", 0.8, 0.1)
 			flash_tween.tween_property(flash, "color:a", 0.0, 0.1)

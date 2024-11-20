@@ -25,12 +25,13 @@ Globals="*res://autoloads/Globals.gd"
 SceneChanger="*res://autoloads/SceneChanger.tscn"
 SaveManager="*res://autoloads/SaveManager.gd"
 ResponsiveUI="*res://autoloads/ResponsiveUI.gd"
+Shaker="*res://addons/shaker/src/Shaker.gd"
 
 [display]
 
 window/size/viewport_width=960
 window/size/viewport_height=1280
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=1
 
@@ -41,6 +42,10 @@ movie_writer/movie_file="/Users/elliotfontaine/Downloads/movie_flappy_godot.avi"
 movie_writer/fps=30
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/shaker/plugin.cfg")
 
 [gui]
 
