@@ -1,10 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://qepiltkccigy"]
+[gd_scene load_steps=11 format=3 uid="uid://qepiltkccigy"]
 
 [ext_resource type="Script" path="res://scenes/home.gd" id="1_3v128"]
-[ext_resource type="PackedScene" uid="uid://dqn6nxqgjp5v1" path="res://scenes/settings_menu.tscn" id="2_7in55"]
+[ext_resource type="PackedScene" uid="uid://dqn6nxqgjp5v1" path="res://scenes/ui/settings_menu.tscn" id="2_7in55"]
 [ext_resource type="AudioStream" uid="uid://dq85rhuwih1oa" path="res://assets/audio/music/2014 07_ Clement Panchout_ Partycles OST_ Cheerful Title Screen.wav" id="2_gr1kj"]
-[ext_resource type="PackedScene" uid="uid://cni3ljkwupbfc" path="res://scenes/background.tscn" id="3_jun4f"]
-[ext_resource type="PackedScene" uid="uid://c8aab5lythc2" path="res://scenes/ground.tscn" id="3_ke246"]
 [ext_resource type="PackedScene" uid="uid://dxrvyg2gkpkyn" path="res://scenes/player.tscn" id="5_6675b"]
 [ext_resource type="Texture2D" uid="uid://bs6mum74g8cb6" path="res://assets/ui/icons/play_icon.png" id="5_ihmwa"]
 [ext_resource type="Texture2D" uid="uid://cxgjldiien6it" path="res://assets/ui/titles/wing_whiz.png" id="5_kqgwt"]
@@ -23,13 +21,6 @@ settings = ExtResource("2_7in55")
 unique_name_in_owner = true
 position = Vector2(480, 640)
 process_callback = 0
-
-[node name="Background" parent="." instance=ExtResource("3_jun4f")]
-visible = false
-
-[node name="Ground" parent="." instance=ExtResource("3_ke246")]
-visible = false
-scroll_offset = Vector2(0, 1424)
 
 [node name="Player" parent="." instance=ExtResource("5_6675b")]
 unique_name_in_owner = true

@@ -1,15 +1,15 @@
 [gd_scene load_steps=16 format=3 uid="uid://cqyfbk6qarwto"]
 
-[ext_resource type="Script" path="res://scenes/pause_menu.gd" id="1_q8k2p"]
-[ext_resource type="Texture2D" uid="uid://ctkkbm8jfha5w" path="res://assets/ui/icons/options_icon.png" id="2_0sp44"]
-[ext_resource type="Texture2D" uid="uid://gnaivebymrj3" path="res://assets/ui/icons/home_icon.png" id="2_2mhk8"]
-[ext_resource type="PackedScene" uid="uid://dqn6nxqgjp5v1" path="res://scenes/settings_menu.tscn" id="2_6br4f"]
-[ext_resource type="Script" path="res://classes/SoundButton.gd" id="3_h2a01"]
-[ext_resource type="Texture2D" uid="uid://baq7m3ycwu4eq" path="res://assets/ui/icons/retry_icon.png" id="3_tnmr4"]
-[ext_resource type="Texture2D" uid="uid://devgg8qq5xvhq" path="res://assets/ui/components/buttons/close_button.png" id="6_ugi3k"]
-[ext_resource type="Texture2D" uid="uid://b4v1gwraqexsa" path="res://assets/ui/components/buttons/close_button_pressed.png" id="7_8b0qf"]
-[ext_resource type="Script" path="res://classes/SoundTextureButton.gd" id="9_idxex"]
-[ext_resource type="AudioStream" uid="uid://qy3dbg5o23ux" path="res://assets/audio/sfx/switch8.ogg" id="10_dkqg6"]
+[ext_resource type="Script" path="res://scenes/ui/pause_menu.gd" id="1_1rm5c"]
+[ext_resource type="PackedScene" uid="uid://dqn6nxqgjp5v1" path="res://scenes/ui/settings_menu.tscn" id="2_ulvb2"]
+[ext_resource type="Texture2D" uid="uid://ctkkbm8jfha5w" path="res://assets/ui/icons/options_icon.png" id="3_6y13u"]
+[ext_resource type="Script" path="res://classes/SoundButton.gd" id="4_rpcng"]
+[ext_resource type="Texture2D" uid="uid://baq7m3ycwu4eq" path="res://assets/ui/icons/retry_icon.png" id="5_tc78o"]
+[ext_resource type="Texture2D" uid="uid://gnaivebymrj3" path="res://assets/ui/icons/home_icon.png" id="6_lr0tn"]
+[ext_resource type="Texture2D" uid="uid://devgg8qq5xvhq" path="res://assets/ui/components/buttons/close_button.png" id="7_p7n21"]
+[ext_resource type="Texture2D" uid="uid://b4v1gwraqexsa" path="res://assets/ui/components/buttons/close_button_pressed.png" id="8_v6lp2"]
+[ext_resource type="Script" path="res://classes/SoundTextureButton.gd" id="9_glgu0"]
+[ext_resource type="AudioStream" uid="uid://qy3dbg5o23ux" path="res://assets/audio/sfx/switch8.ogg" id="10_vcwro"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pcp2u"]
 
@@ -86,9 +86,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_q8k2p")
+script = ExtResource("1_1rm5c")
 retry_scene = 1
-settings = ExtResource("2_6br4f")
+settings = ExtResource("2_ulvb2")
 
 [node name="Backdrop" type="ColorRect" parent="."]
 layout_mode = 1
@@ -162,8 +162,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 text = "Settings"
-icon = ExtResource("2_0sp44")
-script = ExtResource("3_h2a01")
+icon = ExtResource("3_6y13u")
+script = ExtResource("4_rpcng")
 
 [node name="RestartButton" type="Button" parent="Scaler/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Buttons"]
 unique_name_in_owner = true
@@ -171,8 +171,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 text = "Restart"
-icon = ExtResource("3_tnmr4")
-script = ExtResource("3_h2a01")
+icon = ExtResource("5_tc78o")
+script = ExtResource("4_rpcng")
 
 [node name="HomeButton" type="Button" parent="Scaler/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Buttons"]
 unique_name_in_owner = true
@@ -180,8 +180,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 text = "Menu"
-icon = ExtResource("2_2mhk8")
-script = ExtResource("3_h2a01")
+icon = ExtResource("6_lr0tn")
+script = ExtResource("4_rpcng")
 
 [node name="HSeparatorHidden2" type="HSeparator" parent="Scaler/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -194,10 +194,10 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("6_ugi3k")
-texture_pressed = ExtResource("7_8b0qf")
-script = ExtResource("9_idxex")
-sound = ExtResource("10_dkqg6")
+texture_normal = ExtResource("7_p7n21")
+texture_pressed = ExtResource("8_v6lp2")
+script = ExtResource("9_glgu0")
+sound = ExtResource("10_vcwro")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

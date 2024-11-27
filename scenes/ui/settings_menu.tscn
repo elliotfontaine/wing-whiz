@@ -1,14 +1,14 @@
 [gd_scene load_steps=15 format=3 uid="uid://dqn6nxqgjp5v1"]
 
-[ext_resource type="Script" path="res://scenes/settings_menu.gd" id="1_3ww84"]
-[ext_resource type="Texture2D" uid="uid://062pso3ijr2y" path="res://assets/ui/icons/sound_low_icon.png" id="2_w7s67"]
-[ext_resource type="Texture2D" uid="uid://bortt1cnxmw1n" path="res://assets/ui/icons/music_icon.png" id="3_cd88f"]
-[ext_resource type="Texture2D" uid="uid://3yxxim8rosov" path="res://assets/ui/icons/sfx_icon.png" id="4_ib3ly"]
-[ext_resource type="Script" path="res://classes/VolumeSlider.gd" id="5_lubgg"]
-[ext_resource type="Texture2D" uid="uid://devgg8qq5xvhq" path="res://assets/ui/components/buttons/close_button.png" id="6_8lbgp"]
-[ext_resource type="Texture2D" uid="uid://b4v1gwraqexsa" path="res://assets/ui/components/buttons/close_button_pressed.png" id="7_hnwnh"]
-[ext_resource type="Script" path="res://classes/SoundTextureButton.gd" id="8_wjdrk"]
-[ext_resource type="AudioStream" uid="uid://qy3dbg5o23ux" path="res://assets/audio/sfx/switch8.ogg" id="9_74tcd"]
+[ext_resource type="Script" path="res://scenes/ui/settings_menu.gd" id="1_8154l"]
+[ext_resource type="Texture2D" uid="uid://062pso3ijr2y" path="res://assets/ui/icons/sound_low_icon.png" id="2_s3qvg"]
+[ext_resource type="Texture2D" uid="uid://bortt1cnxmw1n" path="res://assets/ui/icons/music_icon.png" id="3_6jo30"]
+[ext_resource type="Texture2D" uid="uid://3yxxim8rosov" path="res://assets/ui/icons/sfx_icon.png" id="4_4648d"]
+[ext_resource type="Script" path="res://classes/VolumeSlider.gd" id="5_hkjwv"]
+[ext_resource type="Texture2D" uid="uid://devgg8qq5xvhq" path="res://assets/ui/components/buttons/close_button.png" id="6_esoo3"]
+[ext_resource type="Texture2D" uid="uid://b4v1gwraqexsa" path="res://assets/ui/components/buttons/close_button_pressed.png" id="7_p3o43"]
+[ext_resource type="Script" path="res://classes/SoundTextureButton.gd" id="8_uvggl"]
+[ext_resource type="AudioStream" uid="uid://qy3dbg5o23ux" path="res://assets/audio/sfx/switch8.ogg" id="9_mx3t7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pcp2u"]
 
@@ -84,7 +84,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_3ww84")
+script = ExtResource("1_8154l")
 
 [node name="Backdrop" type="ColorRect" parent="."]
 layout_mode = 1
@@ -177,7 +177,7 @@ horizontal_alignment = 2
 
 [node name="Icon" type="TextureRect" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Labels/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("2_w7s67")
+texture = ExtResource("2_s3qvg")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Labels"]
 layout_mode = 2
@@ -192,7 +192,7 @@ horizontal_alignment = 2
 
 [node name="Icon" type="TextureRect" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Labels/HBoxContainer2"]
 layout_mode = 2
-texture = ExtResource("3_cd88f")
+texture = ExtResource("3_6jo30")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Labels"]
 layout_mode = 2
@@ -206,11 +206,7 @@ horizontal_alignment = 2
 
 [node name="Icon" type="TextureRect" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Labels/HBoxContainer3"]
 layout_mode = 2
-texture = ExtResource("4_ib3ly")
-
-[node name="VSeparator" type="VSeparator" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
+texture = ExtResource("4_4648d")
 
 [node name="Sliders" type="VBoxContainer" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -225,7 +221,7 @@ size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 max_value = 1.0
 step = 0.1
-script = ExtResource("5_lubgg")
+script = ExtResource("5_hkjwv")
 audio_bus = 1
 
 [node name="MusicVolumeSlider" type="HSlider" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Sliders"]
@@ -234,7 +230,7 @@ size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 max_value = 1.0
 step = 0.1
-script = ExtResource("5_lubgg")
+script = ExtResource("5_hkjwv")
 audio_bus = 2
 
 [node name="SFXVolumeSlider" type="HSlider" parent="Scaler/MarginContainer/TabContainer/Au/MarginContainer/VBoxContainer/HBoxContainer/Sliders"]
@@ -243,7 +239,7 @@ size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 max_value = 1.0
 step = 0.1
-script = ExtResource("5_lubgg")
+script = ExtResource("5_hkjwv")
 audio_bus = 3
 
 [node name="CloseButton1" type="TextureButton" parent="Scaler/MarginContainer/TabContainer/Au"]
@@ -252,10 +248,10 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("6_8lbgp")
-texture_pressed = ExtResource("7_hnwnh")
-script = ExtResource("8_wjdrk")
-sound = ExtResource("9_74tcd")
+texture_normal = ExtResource("6_esoo3")
+texture_pressed = ExtResource("7_p3o43")
+script = ExtResource("8_uvggl")
+sound = ExtResource("9_mx3t7")
 
 [node name="Ac" type="MarginContainer" parent="Scaler/MarginContainer/TabContainer"]
 visible = false
@@ -302,10 +298,10 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("6_8lbgp")
-texture_pressed = ExtResource("7_hnwnh")
-script = ExtResource("8_wjdrk")
-sound = ExtResource("9_74tcd")
+texture_normal = ExtResource("6_esoo3")
+texture_pressed = ExtResource("7_p3o43")
+script = ExtResource("8_uvggl")
+sound = ExtResource("9_mx3t7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
