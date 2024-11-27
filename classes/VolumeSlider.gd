@@ -8,7 +8,8 @@ enum AudioBus {Master = 0}
 
 func _ready() -> void:
     value_changed.connect(_on_value_changed)
-    value = SaveManager.get("volume_" + bus_name.to_lower())
+    if !Engine.is_editor_hint():
+        value = SaveManager.get("volume_" + bus_name.to_lower())
 
 func _on_value_changed(new_value: float) -> void:
     SaveManager.set("volume_" + bus_name.to_lower(), new_value)
