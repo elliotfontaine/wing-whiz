@@ -27,6 +27,7 @@ SaveManager="*res://autoloads/SaveManager.gd"
 ResponsiveUI="*res://autoloads/ResponsiveUI.gd"
 Shaker="*res://addons/shaker/src/Shaker.gd"
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
+SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
 
 [display]
 
