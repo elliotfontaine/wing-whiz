@@ -26,7 +26,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	player.position.x += 300 * delta
-	camera.position.x = player.position.x + camera_player_offset
+	camera.position.x += 300 * delta
 
 func _on_play_pressed() -> void:
 	var menu_out = get_tree().create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)

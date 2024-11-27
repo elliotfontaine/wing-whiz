@@ -22,6 +22,7 @@ settings = ExtResource("2_7in55")
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(480, 640)
+process_callback = 0
 
 [node name="Background" parent="." instance=ExtResource("3_jun4f")]
 visible = false

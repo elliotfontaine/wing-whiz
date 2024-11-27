@@ -19,7 +19,6 @@ texture = ExtResource("1_qbswn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PipeDown"]
 position = Vector2(0, -0.5)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_foxxc")
 
 [node name="PipeUp" type="StaticBody2D" parent="."]
@@ -31,5 +30,4 @@ texture = ExtResource("2_ihbag")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PipeUp"]
 position = Vector2(0, 0.625015)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_foxxc")

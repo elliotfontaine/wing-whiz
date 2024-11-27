@@ -38,7 +38,7 @@ var get_ready_textures = {
 @onready var ground_body: PhysicsBody2D = %GroundSB2D
 @onready var flash: ColorRect = %Flash
 @onready var best_score = SaveManager.best_score
-@onready var camera_player_offset = camera.position.x - player.position.x
+@onready var camera_player_offset: Vector2 = camera.position - player.position
 @onready var States = player.States
 
 func _ready() -> void:
@@ -90,11 +90,12 @@ func _on_pause_menu_closed() -> void:
 	pass
 	# Add countdown to resume. Maybe from the pause menu itself?
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	ground_body.position.x = player.position.x
 	if player.state in [player.States.READY, player.States.FLYING]:
-		player.position.x += player_speed * delta * 60
-		camera.position.x = player.position.x + camera_player_offset
+		player.position.x += int(player_speed * delta * 60.0)
+		camera.position.x += int(player_speed * delta * 60.0)
+		#camera.position.x = camera.position.lerp(player.position + camera_player_offset, delta * 2.0).x
 	if player.state == player.States.FLYING:
 		# Check if the player passed an obstacle
 		var next_obstacle: Node2D = upcoming_obstacles.front()
@@ -106,7 +107,6 @@ func _physics_process(delta: float) -> void:
 func clean_obstacles() -> void:
 	var oldest_obstacle: Node2D = obstacles.front()
 	if oldest_obstacle and oldest_obstacle.position.x - player.position.x < -1000.0:
-		print("delete ", oldest_obstacle)
 		obstacles.pop_front()
 		oldest_obstacle.queue_free()
 

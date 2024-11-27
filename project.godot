@@ -26,14 +26,16 @@ SceneChanger="*res://autoloads/SceneChanger.tscn"
 SaveManager="*res://autoloads/SaveManager.gd"
 ResponsiveUI="*res://autoloads/ResponsiveUI.gd"
 Shaker="*res://addons/shaker/src/Shaker.gd"
+DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 
 [display]
 
 window/size/viewport_width=960
 window/size/viewport_height=1280
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/handheld/orientation=1
+window/vsync/vsync_mode=0
 
 [editor]
 
@@ -45,7 +47,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/shaker/plugin.cfg")
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/shaker/plugin.cfg")
 
 [gui]
 
@@ -72,6 +74,10 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_1="player"
 2d_physics/layer_2="obstacle"
 2d_physics/layer_3="ground"
+
+[physics]
+
+common/enable_object_picking=false
 
 [rendering]
 
