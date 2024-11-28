@@ -54,7 +54,7 @@ enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/sh
 
 fonts/dynamic_fonts/use_oversampling=false
 theme/custom="res://assets/ui/ui_theme.tres"
-theme/custom_font="res://assets/ui/font/PeaberryMono.woff2"
+theme/custom_font="res://assets/ui/font/PeaberryBase.woff2"
 
 [input]
 
