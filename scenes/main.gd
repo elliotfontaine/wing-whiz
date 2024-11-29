@@ -78,6 +78,8 @@ func draw_debug_mobile():
 
 func _notification(what: int):
 	if what == NOTIFICATION_APPLICATION_FOCUS_OUT and player.state == States.FLYING:
+		if get_tree().paused:
+			return
 		_on_pause_pressed()
 
 func _on_pause_pressed() -> void:
