@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dqn6nxqgjp5v1"]
+[gd_scene load_steps=22 format=3 uid="uid://dqn6nxqgjp5v1"]
 
 [ext_resource type="Script" path="res://scenes/ui/settings_menu.gd" id="1_8154l"]
 [ext_resource type="Texture2D" uid="uid://062pso3ijr2y" path="res://assets/ui/icons/sound_low_icon.png" id="2_s3qvg"]
@@ -9,8 +9,16 @@
 [ext_resource type="Texture2D" uid="uid://b4v1gwraqexsa" path="res://assets/ui/components/buttons/close_button_pressed.png" id="7_p3o43"]
 [ext_resource type="Script" path="res://classes/SoundTextureButton.gd" id="8_uvggl"]
 [ext_resource type="AudioStream" uid="uid://qy3dbg5o23ux" path="res://assets/audio/sfx/switch8.ogg" id="9_mx3t7"]
+[ext_resource type="Texture2D" uid="uid://djrat7mudmtcx" path="res://assets/ui/icons/right_arrow_icon.png" id="10_1q7yd"]
+[ext_resource type="FontFile" uid="uid://c4g6igiex5rko" path="res://assets/ui/font/monogram-extended.ttf" id="10_a8r00"]
+[ext_resource type="PackedScene" uid="uid://beqhdapidytec" path="res://scenes/ui/login_form.tscn" id="10_ssbsi"]
+[ext_resource type="Texture2D" uid="uid://doasc82283cjo" path="res://assets/ui/icons/exit_icon.png" id="11_8v7gq"]
+[ext_resource type="Script" path="res://classes/SoundButton.gd" id="12_clkpl"]
+[ext_resource type="Texture2D" uid="uid://3gtdple761m2" path="res://assets/ui/icons/rleft_arrow_icon.png" id="13_7f7ni"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pcp2u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0hsyt"]
 
 [sub_resource type="Animation" id="Animation_hedsp"]
 length = 0.001
@@ -120,12 +128,13 @@ offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(5, 5)
-pivot_offset = Vector2(89, 80)
+pivot_offset = Vector2(89, 107)
 
 [node name="TabContainer" type="TabContainer" parent="Scaler/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 current_tab = 0
+use_hidden_tabs_for_min_size = true
 tab_focus_mode = 0
 
 [node name="Au" type="MarginContainer" parent="Scaler/MarginContainer/TabContainer"]
@@ -279,16 +288,83 @@ layout_mode = 2
 
 [node name="HSeparatorHidden" type="HSeparator" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 4
 theme_override_styles/separator = SubResource("StyleBoxEmpty_pcp2u")
 
-[node name="CenterContainer" type="CenterContainer" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer"]
+[node name="AccountTabContainer" type="TabContainer" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_0hsyt")
+current_tab = 1
+tabs_visible = false
+use_hidden_tabs_for_min_size = true
+
+[node name="PlayerCardTab" type="VBoxContainer" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer/AccountTabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="UsernameDisplay" type="Label" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer/AccountTabContainer/PlayerCardTab"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_a8r00")
+text = "Player: MissingNo"
+
+[node name="LogoutButton" type="Button" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer/AccountTabContainer/PlayerCardTab"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 10
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_type_variation = &"SmallButton"
+text = "Log out"
+icon = ExtResource("11_8v7gq")
+icon_alignment = 2
+script = ExtResource("12_clkpl")
+
+[node name="LoginTab" type="VBoxContainer" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer/AccountTabContainer"]
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="SignupButton" type="Button" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer/AccountTabContainer/LoginTab"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_type_variation = &"SmallButton"
+text = "Sign up"
+icon = ExtResource("10_1q7yd")
+icon_alignment = 2
+script = ExtResource("12_clkpl")
+
+[node name="LoginForm" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer/AccountTabContainer/LoginTab" instance=ExtResource("10_ssbsi")]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer/CenterContainer"]
-custom_minimum_size = Vector2(60, 60)
+[node name="SignupTab" type="VBoxContainer" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer/AccountTabContainer"]
+visible = false
 layout_mode = 2
-text = "Coming soon !"
+metadata/_tab_index = 2
+
+[node name="LoginButton" type="Button" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer/AccountTabContainer/SignupTab"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_type_variation = &"SmallButton"
+theme_override_constants/h_separation = 3
+text = "Log in"
+icon = ExtResource("13_7f7ni")
+script = ExtResource("12_clkpl")
+
+[node name="Dummy" type="Label" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer/AccountTabContainer/SignupTab"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(90, 60)
+layout_mode = 2
+text = "You want to sign up? Too bad!"
 vertical_alignment = 1
 autowrap_mode = 2
 
