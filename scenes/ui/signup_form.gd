@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-signal login_succeeded
+signal registration_succeeded
 
 const SWLogger = preload("res://addons/silent_wolf/utils/SWLogger.gd")
 
@@ -10,36 +10,39 @@ var username: String:
 var password: String:
 	set(value): %PasswordLineEdit.text = value
 	get: return %PasswordLineEdit.text
+var confirm_password: String:
+	set(value): %ConfirmPasswordLineEdit.text = value
+	get: return %ConfirmPasswordLineEdit.text
 
-@onready var login_button: Button = %LoginButton
+@onready var signup_button: Button = %SignupButton
 @onready var processing_label: Label = %ProcessingLabel
 @onready var error_message: Label = %ErrorMessage
 
 
 func _ready():
-	SilentWolf.Auth.sw_login_complete.connect(_on_login_complete)
-	login_button.pressed.connect(_on_login_button_pressed)
+	SilentWolf.Auth.sw_registration_complete.connect(_on_registration_complete)
+	signup_button.pressed.connect(_on_signup_button_pressed)
 	processing_label.hide()
 	error_message.hide()
 
-func _on_login_button_pressed() -> void:
-	if username == "" or password == "":
+func _on_signup_button_pressed() -> void:
+	if username == "" or password == "" or confirm_password == "":
 		error_message.text = "All fields are required."
 		error_message.show()
 		return
-	SWLogger.debug("Login form submitted")
-	SilentWolf.Auth.login_player(username, password, true)
+	SWLogger.debug("Signup form submitted")
+	SilentWolf.Auth.register_player(username, "noemail@required", password, confirm_password)
 	error_message.hide()
 	processing_label.show()
 
-func _on_login_complete(sw_result: Dictionary) -> void:
+func _on_registration_complete(sw_result: Dictionary) -> void:
 	if sw_result.success:
-		login_succeeded.emit()
+		registration_succeeded.emit()
 	else:
-		login_failure(sw_result.error)
+		signup_failure(sw_result.error)
 
-func login_failure(error: String) -> void:
-	SWLogger.info("log in failed: " + str(error))
+func signup_failure(error: String) -> void:
+	SWLogger.info("Registration failed: " + str(error))
 	error_message.text = error
 	processing_label.hide()
 	error_message.show()
@@ -49,4 +52,5 @@ func cleanup_form() -> void:
 	error_message.hide()
 	username = ""
 	password = ""
+	confirm_password = ""
 	error_message.text = ""

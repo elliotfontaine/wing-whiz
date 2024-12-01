@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dqn6nxqgjp5v1"]
+[gd_scene load_steps=23 format=3 uid="uid://dqn6nxqgjp5v1"]
 
 [ext_resource type="Script" path="res://scenes/ui/settings_menu.gd" id="1_8154l"]
 [ext_resource type="Texture2D" uid="uid://062pso3ijr2y" path="res://assets/ui/icons/sound_low_icon.png" id="2_s3qvg"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://doasc82283cjo" path="res://assets/ui/icons/exit_icon.png" id="11_8v7gq"]
 [ext_resource type="Script" path="res://classes/SoundButton.gd" id="12_clkpl"]
 [ext_resource type="Texture2D" uid="uid://3gtdple761m2" path="res://assets/ui/icons/rleft_arrow_icon.png" id="13_7f7ni"]
+[ext_resource type="PackedScene" uid="uid://dc7bya22ddb81" path="res://scenes/ui/signup_form.tscn" id="16_df8ju"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pcp2u"]
 
@@ -133,11 +134,12 @@ pivot_offset = Vector2(89, 107)
 [node name="TabContainer" type="TabContainer" parent="Scaler/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-current_tab = 0
+current_tab = 1
 use_hidden_tabs_for_min_size = true
 tab_focus_mode = 0
 
 [node name="Au" type="MarginContainer" parent="Scaler/MarginContainer/TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 0
@@ -263,7 +265,6 @@ script = ExtResource("8_uvggl")
 sound = ExtResource("9_mx3t7")
 
 [node name="Ac" type="MarginContainer" parent="Scaler/MarginContainer/TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 0
@@ -296,7 +297,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_0hsyt")
-current_tab = 1
+current_tab = 2
 tabs_visible = false
 use_hidden_tabs_for_min_size = true
 
@@ -324,6 +325,7 @@ icon_alignment = 2
 script = ExtResource("12_clkpl")
 
 [node name="LoginTab" type="VBoxContainer" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer/AccountTabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -344,7 +346,6 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="SignupTab" type="VBoxContainer" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer/AccountTabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
@@ -360,13 +361,9 @@ text = "Log in"
 icon = ExtResource("13_7f7ni")
 script = ExtResource("12_clkpl")
 
-[node name="Dummy" type="Label" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer/AccountTabContainer/SignupTab"]
+[node name="SignupForm" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer/AccountTabContainer/SignupTab" instance=ExtResource("16_df8ju")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(90, 60)
 layout_mode = 2
-text = "You want to sign up? Too bad!"
-vertical_alignment = 1
-autowrap_mode = 2
 
 [node name="CloseButton2" type="TextureButton" parent="Scaler/MarginContainer/TabContainer/Ac"]
 unique_name_in_owner = true
