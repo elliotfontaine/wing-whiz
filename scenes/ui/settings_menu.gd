@@ -35,14 +35,14 @@ func _ready() -> void:
 	tab_container.set_tab_title(1, "")
 	close_button_1.pressed.connect(_on_close_pressed)
 	close_button_2.pressed.connect(_on_close_pressed)
-
-	choose_account_tab()
 	tab_container.tab_changed.connect(_on_tab_changed)
+	
 	logout_button.pressed.connect(_on_logout_pressed)
 	to_login_button.pressed.connect(_on_to_login_pressed)
 	to_signup_button.pressed.connect(_on_to_signup_pressed)
 	login_form.connect("login_succeeded", _on_login_succeeded)
 	signup_form.connect("registration_succeeded", _on_registration_succeeded)
+	choose_account_tab()
 	
 	ResponsiveUI.ratio_changed.connect(_on_ratio_changed)
 	_on_ratio_changed(ResponsiveUI.ratio)

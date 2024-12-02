@@ -1,7 +1,7 @@
 extends Node
 
 const GAME_VERSION := "0.1.0"
-const SAVEFILE_VERSION := "0.1.0"
+const SAVEFILE_VERSION := "1"
 const GITHUB_URL := "https://github.com/elliotfontaine/wing-whiz"
 const ITCHIO_URL := "placeholder_itch.io_url"
 
@@ -12,7 +12,7 @@ var TARGET_WIDTH: int = ProjectSettings.get_setting("display/window/size/viewpor
 
 func _ready() -> void:
     #OS.request_permissions()
-    
+
     # SilentWolf plugin configuration
     SilentWolf.configure({
         "api_key": "itg02Lw5RS3Iva1wzR6j64n9VU0b00Yn8tgZll8a",
