@@ -1,5 +1,7 @@
 extends Control
 
+signal logout_success
+
 const TAB_ICONS := {
 	"audio": preload("res://assets/ui/icons/sound_icon.png"),
 	"account": preload("res://assets/ui/icons/person_icon.png"),
@@ -40,8 +42,7 @@ func _ready() -> void:
 	logout_button.pressed.connect(_on_logout_pressed)
 	to_login_button.pressed.connect(_on_to_login_pressed)
 	to_signup_button.pressed.connect(_on_to_signup_pressed)
-	login_form.connect("login_succeeded", _on_login_succeeded)
-	signup_form.connect("registration_succeeded", _on_registration_succeeded)
+	Talo.players.identified.connect(func(player): _on_player_identified(player))
 	choose_account_tab()
 	
 	ResponsiveUI.ratio_changed.connect(_on_ratio_changed)
@@ -61,30 +62,23 @@ func _on_tab_changed(tab: int) -> void:
 
 
 func choose_account_tab() -> void:
-	if SilentWolf.Auth.logged_in_player != null:
+	if Talo.identity_check() == OK:
 		account_tab_container.current_tab = AccountTabs.PLAYER_CARD
-		# Replace by a real playercard scene
-		account_tab_container.find_child("UsernameDisplay", true).text = SilentWolf.Auth.logged_in_player
+		# TODO: Replace by a real playercard scene
+		account_tab_container.find_child("UsernameDisplay", true).text = Talo.current_alias.identifier
 	else:
 		account_tab_container.current_tab = AccountTabs.LOG_IN
 
-
-func _on_login_succeeded() -> void:
+func _on_player_identified(player) -> void:
 	account_tab_container.current_tab = AccountTabs.PLAYER_CARD
 	signup_form.cleanup_form()
 	login_form.cleanup_form()
-	# Replace by a real playercard scene
-	account_tab_container.find_child("UsernameDisplay", true).text = SilentWolf.Auth.logged_in_player
-
-func _on_registration_succeeded() -> void:
-	account_tab_container.current_tab = AccountTabs.PLAYER_CARD
-	signup_form.cleanup_form()
-	login_form.cleanup_form()
-	# Replace by a real playercard scene
-	account_tab_container.find_child("UsernameDisplay", true).text = SilentWolf.Auth.logged_in_player
+	# TODO: Replace by a real playercard scene
+	account_tab_container.find_child("UsernameDisplay", true).text = Talo.current_alias.identifier
 
 func _on_logout_pressed() -> void:
-	await SilentWolf.Auth.logout_player()
+	await Talo.player_auth.logout()
+	logout_success.emit()
 	account_tab_container.current_tab = AccountTabs.LOG_IN
 
 func _on_to_signup_pressed() -> void:

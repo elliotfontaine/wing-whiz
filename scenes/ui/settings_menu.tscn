@@ -134,12 +134,11 @@ pivot_offset = Vector2(89, 107)
 [node name="TabContainer" type="TabContainer" parent="Scaler/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-current_tab = 1
+current_tab = 0
 use_hidden_tabs_for_min_size = true
 tab_focus_mode = 0
 
 [node name="Au" type="MarginContainer" parent="Scaler/MarginContainer/TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 0
@@ -265,6 +264,7 @@ script = ExtResource("8_uvggl")
 sound = ExtResource("9_mx3t7")
 
 [node name="Ac" type="MarginContainer" parent="Scaler/MarginContainer/TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 0
@@ -297,7 +297,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_0hsyt")
-current_tab = 2
+current_tab = 1
 tabs_visible = false
 use_hidden_tabs_for_min_size = true
 
@@ -325,7 +325,6 @@ icon_alignment = 2
 script = ExtResource("12_clkpl")
 
 [node name="LoginTab" type="VBoxContainer" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer/AccountTabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -346,6 +345,7 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="SignupTab" type="VBoxContainer" parent="Scaler/MarginContainer/TabContainer/Ac/MarginContainer/VBoxContainer/AccountTabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 

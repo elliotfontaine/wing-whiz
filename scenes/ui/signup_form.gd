@@ -1,9 +1,5 @@
 extends VBoxContainer
 
-signal registration_succeeded
-
-const SWLogger = preload("res://addons/silent_wolf/utils/SWLogger.gd")
-
 var username: String:
 	set(value): %UsernameLineEdit.text = value
 	get: return %UsernameLineEdit.text
@@ -20,7 +16,6 @@ var confirm_password: String:
 
 
 func _ready():
-	SilentWolf.Auth.sw_registration_complete.connect(_on_registration_complete)
 	signup_button.pressed.connect(_on_signup_button_pressed)
 	processing_label.hide()
 	error_message.hide()
@@ -30,22 +25,24 @@ func _on_signup_button_pressed() -> void:
 		error_message.text = "All fields are required."
 		error_message.show()
 		return
-	SWLogger.debug("Signup form submitted")
-	SilentWolf.Auth.register_player(username, "noemail@required", password, confirm_password)
+	if password != confirm_password:
+		error_message.text = "Passwords do not match."
+		error_message.show()
+		return
 	error_message.hide()
 	processing_label.show()
+	var res = await Talo.player_auth.register(username, password, "noemail@required.io", false)
+	if res == FAILED:
+		signup_failure()
 
-func _on_registration_complete(sw_result: Dictionary) -> void:
-	if sw_result.success:
-		registration_succeeded.emit()
-	else:
-		signup_failure(sw_result.error)
-
-func signup_failure(error: String) -> void:
-	SWLogger.info("Registration failed: " + str(error))
-	error_message.text = error
+func signup_failure() -> void:
 	processing_label.hide()
 	error_message.show()
+	match Talo.player_auth.last_error.get_code():
+		TaloAuthError.ErrorCode.IDENTIFIER_TAKEN:
+			error_message.text = "Username is already taken"
+		_:
+			error_message.text = Talo.player_auth.last_error.get_string()
 
 func cleanup_form() -> void:
 	processing_label.hide()
