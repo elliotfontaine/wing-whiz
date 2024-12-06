@@ -6,42 +6,50 @@ var username: String:
 var password: String:
 	set(value): %PasswordLineEdit.text = value
 	get: return %PasswordLineEdit.text
+var error_message: String:
+	set(value):
+		if value == "":
+			%ErrorLabel.hide()
+		else:
+			%ErrorLabel.text = value
+			processing_label.hide()
+			%ErrorLabel.show()
+	get: return %ErrorLabel.text
 
 @onready var login_button: Button = %LoginButton
 @onready var processing_label: Label = %ProcessingLabel
-@onready var error_message: Label = %ErrorMessage
+@onready var error_label: Label = %ErrorLabel
 
 
 func _ready():
+	cleanup_form()
 	login_button.pressed.connect(_on_login_button_pressed)
-	processing_label.hide()
-	error_message.hide()
+	processing_label.visibility_changed.connect(func(): if processing_label.visible: error_label.hide())
 
 func _on_login_button_pressed() -> void:
 	if not username:
-		error_message.text = "Username is required"
+		error_message = "Username is required"
 		return
 	if not password:
-		error_message.text = "Password is required"
+		error_message = "Password is required"
 		return
-	error_message.hide()
+	login_button.disabled = true
 	processing_label.show()
 	var res = await Talo.player_auth.login(username, password)
 	if res[0] == FAILED:
-		login_failure()
+		display_failure_code()
+		login_button.disabled = false
 
-func login_failure() -> void:
-	processing_label.hide()
-	error_message.show()
+func display_failure_code() -> void:
 	match Talo.player_auth.last_error.get_code():
 		TaloAuthError.ErrorCode.INVALID_CREDENTIALS:
-			error_message.text = "Username or password is incorrect."
+			error_message = "Username or password is incorrect."
 		_:
-			error_message.text = Talo.player_auth.last_error.get_string()
+			error_message = Talo.player_auth.last_error.get_string()
 
 func cleanup_form() -> void:
 	processing_label.hide()
-	error_message.hide()
+	login_button.disabled = false
 	username = ""
 	password = ""
-	error_message.text = ""
+	error_message = ""

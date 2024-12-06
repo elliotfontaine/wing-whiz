@@ -64,7 +64,7 @@ theme_override_constants/margin_bottom = 0
 layout_mode = 2
 vertical_scroll_mode = 0
 
-[node name="ErrorMessage" type="Label" parent="MarginContainer/ErrorScrollContainer"]
+[node name="ErrorLabel" type="Label" parent="MarginContainer/ErrorScrollContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2

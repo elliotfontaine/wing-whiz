@@ -9,45 +9,51 @@ var password: String:
 var confirm_password: String:
 	set(value): %ConfirmPasswordLineEdit.text = value
 	get: return %ConfirmPasswordLineEdit.text
+var error_message: String:
+	set(value):
+		if value == "":
+			%ErrorLabel.hide()
+		else:
+			%ErrorLabel.text = value
+			processing_label.hide()
+			%ErrorLabel.show()
+	get: return %ErrorLabel.text
 
 @onready var signup_button: Button = %SignupButton
 @onready var processing_label: Label = %ProcessingLabel
-@onready var error_message: Label = %ErrorMessage
+@onready var error_label: Label = %ErrorLabel
 
 
 func _ready():
+	cleanup_form()
 	signup_button.pressed.connect(_on_signup_button_pressed)
-	processing_label.hide()
-	error_message.hide()
+	processing_label.visibility_changed.connect(func(): if processing_label.visible: error_label.hide())
 
 func _on_signup_button_pressed() -> void:
 	if username == "" or password == "" or confirm_password == "":
-		error_message.text = "All fields are required."
-		error_message.show()
+		error_message = "All fields are required."
 		return
 	if password != confirm_password:
-		error_message.text = "Passwords do not match."
-		error_message.show()
+		error_message = "Passwords do not match."
 		return
-	error_message.hide()
+	signup_button.disabled = true
 	processing_label.show()
 	var res = await Talo.player_auth.register(username, password, "noemail@required.io", false)
 	if res == FAILED:
-		signup_failure()
+		display_failure_code()
+		signup_button.disabled = false
 
-func signup_failure() -> void:
-	processing_label.hide()
-	error_message.show()
+func display_failure_code() -> void:
 	match Talo.player_auth.last_error.get_code():
 		TaloAuthError.ErrorCode.IDENTIFIER_TAKEN:
-			error_message.text = "Username is already taken"
+			error_message = "Username is already taken"
 		_:
-			error_message.text = Talo.player_auth.last_error.get_string()
+			error_message = Talo.player_auth.last_error.get_string()
 
 func cleanup_form() -> void:
 	processing_label.hide()
-	error_message.hide()
+	signup_button.disabled = false
 	username = ""
 	password = ""
 	confirm_password = ""
-	error_message.text = ""
+	error_message = ""

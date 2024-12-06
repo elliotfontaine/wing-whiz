@@ -62,12 +62,13 @@ func _on_tab_changed(tab: int) -> void:
 
 
 func choose_account_tab() -> void:
-	if Talo.identity_check() == OK:
+	if Talo.identity_check(false) == OK:
 		account_tab_container.current_tab = AccountTabs.PLAYER_CARD
 		# TODO: Replace by a real playercard scene
 		account_tab_container.find_child("UsernameDisplay", true).text = Talo.current_alias.identifier
 	else:
 		account_tab_container.current_tab = AccountTabs.LOG_IN
+		Talo._check_session()
 
 func _on_player_identified(player) -> void:
 	account_tab_container.current_tab = AccountTabs.PLAYER_CARD
