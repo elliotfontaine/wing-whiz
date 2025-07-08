@@ -92,11 +92,11 @@ func _on_pause_menu_closed() -> void:
 	pass
 	# Add countdown to resume. Maybe from the pause menu itself?
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	ground_body.position.x = player.position.x
 	if player.state in [player.States.READY, player.States.FLYING]:
-		player.position.x += int(player_speed * delta * 60.0)
-		camera.position.x += int(player_speed * delta * 60.0)
+		player.position.x += player_speed * delta * 60.0
+		camera.position.x += player_speed * delta * 60.0
 		#camera.position.x = camera.position.lerp(player.position + camera_player_offset, delta * 2.0).x
 	if player.state == player.States.FLYING:
 		# Check if the player passed an obstacle

@@ -24,7 +24,7 @@ func _ready() -> void:
 	_on_ratio_changed(ResponsiveUI.ratio)
 	player.state = player.States.AUTO
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	player.position.x += 300 * delta
 	camera.position.x += 300 * delta
 
