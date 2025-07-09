@@ -36,9 +36,12 @@ func _on_login_button_pressed() -> void:
 	login_button.disabled = true
 	processing_label.show()
 	var res = await Talo.player_auth.login(username, password)
-	if res[0] == FAILED:
-		display_failure_code()
-		login_button.disabled = false
+	match res:
+		Talo.player_auth.LoginResult.FAILED:
+			display_failure_code()
+			login_button.disabled = false
+		Talo.player_auth.LoginResult.OK:
+			pass
 
 func display_failure_code() -> void:
 	match Talo.player_auth.last_error.get_code():

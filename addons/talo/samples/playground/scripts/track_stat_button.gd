@@ -11,5 +11,9 @@ func _on_pressed() -> void:
 		%ResponseLabel.text = "stat_name not set on TrackStatButton"
 		return
 
-	Talo.stats.track(stat_name)
-	%ResponseLabel.text = "Stat incremented: %s" % stat_name
+	var res := await Talo.stats.track(stat_name)
+	if not is_instance_valid(res):
+		%ResponseLabel.text = "Failed to track %s" % stat_name
+		return
+
+	%ResponseLabel.text = "Stat incremented: %s, new value is %s" % [stat_name, res.value]

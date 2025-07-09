@@ -22,12 +22,12 @@ buses/default_bus_layout="res://assets/audio/default_bus_layout.tres"
 [autoload]
 
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
-Talo="*res://addons/talo/talo_manager.gd"
 Shaker="*res://addons/shaker/src/Shaker.gd"
 Globals="*res://autoloads/Globals.gd"
 SceneChanger="*res://autoloads/SceneChanger.tscn"
 SaveManager="*res://autoloads/SaveManager.gd"
 ResponsiveUI="*res://autoloads/ResponsiveUI.gd"
+Talo="*res://addons/talo/talo_manager.gd"
 
 [display]
 

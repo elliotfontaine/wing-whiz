@@ -5,8 +5,12 @@ class_name EventsAPI extends TaloAPI
 ##
 ## @tutorial: https://docs.trytalo.com/docs/godot/events
 
-var _queue = []
-var _min_queue_size = 10
+var _queue := []
+var _min_queue_size := 10
+
+var _events_to_flush := []
+var _lock_flushes := false
+var _flush_attempted_during_lock := false
 
 func _get_window_mode() -> String:
 	match DisplayServer.window_get_mode():
@@ -29,24 +33,20 @@ func _build_meta_props() -> Array[TaloProp]:
 	]
 
 func _has_errors(errors: Array) -> bool:
-	return errors.any((func (err: Array): return err.size() > 0))
+	return errors.any((func(err: Array): return err.size() > 0))
 
 ## Track an event with optional props (key-value pairs) and add it to the queue of events ready to be sent to the backend. If the queue reaches the minimum size, it will be flushed.
 func track(name: String, props: Dictionary = {}) -> void:
 	if Talo.identity_check() != OK:
 		return
 
-	var final_props = _build_meta_props()
-	final_props.append_array(
-		props
-			.keys()
-			.map(func (key: String): return TaloProp.new(key, str(props[key])))
-	)
+	var final_props := _build_meta_props()
+	final_props.append_array(TaloPropUtils.dictionary_to_prop_array(props))
 
 	_queue.push_back({
 		name = name,
-		props = final_props.map(func (prop: TaloProp): return prop.to_dictionary()),
-		timestamp = TimeUtils.get_timestamp_msec()
+		props = TaloPropUtils.serialise_prop_array(final_props),
+		timestamp = TaloTimeUtils.get_timestamp_msec()
 	})
 
 	if _queue.size() >= _min_queue_size:
@@ -57,10 +57,25 @@ func flush() -> void:
 	if _queue.size() == 0:
 		return
 
-	var res = await client.make_request(HTTPClient.METHOD_POST, "/", { events = _queue })
+	if _lock_flushes:
+		_flush_attempted_during_lock = true
+		return
+
+	_lock_flushes = true
+	_events_to_flush.append_array(_queue)
 	_queue.clear()
 
-	match (res.status):
+	var res := await client.make_request(HTTPClient.METHOD_POST, "/", {events = _events_to_flush})
+
+	_events_to_flush.clear()
+	_lock_flushes = false
+
+	match res.status:
 		200:
 			if _has_errors(res.body.errors):
-				push_error("Failed to flush events: %s" % res.body.errors)
+				push_error("Failed to flush events:")
+				push_error(res.body.errors)
+
+	if _flush_attempted_during_lock:
+		_flush_attempted_during_lock = false
+		await flush()

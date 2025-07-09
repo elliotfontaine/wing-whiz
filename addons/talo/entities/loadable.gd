@@ -11,36 +11,24 @@ class_name TaloLoadable extends Node
 var _saved_fields: Dictionary
 
 func _ready() -> void:
-	Talo.saves.save_chosen.connect(_load_data)
 	Talo.saves.register(self)
 
-func _load_data(save: TaloGameSave) -> void:
-	if not save:
-		return
+func _convert_serialised_data(item: Dictionary) -> Variant:
+	match Talo.saves.get_format_version():
+		"godot.v1": return type_convert(item.value, int(item.type))
+		_: return str_to_var(item.value)
 
-	var fields = {}
-
-	var filtered = save.content.objects.filter(func (obj: Dictionary): return obj.id == id)
-	if filtered.is_empty():
-		push_warning("Loadable with id '%s' not found in save '%s'" % [id, save.display_name])
-		return
-
-	var saved_object = filtered.front()
-
-	for item in saved_object.data:
-		fields[item.key] = type_convert(item.value, int(item.type))
+## Update this loadable with the latest data.
+func hydrate(data: Array[Dictionary]) -> void:
+	var fields := {}
+	for item in data:
+		fields[item.key] = _convert_serialised_data(item)
 
 	on_loaded(fields)
 
-	Talo.saves.set_object_loaded(id)
-
-## Clear all the saved data for this loadable.
-func clear_saved_fields() -> void:
-	_saved_fields.clear()
-
-## Register all the fields that should be saved and loaded. This must be implemented by the child class.
+## Register all the fields that should be saved and loaded.
 func register_fields() -> void:
-	assert(false, "register_fields() must be implemented")
+	pass
 
 ## Register the given key with a value. When this object is saved, the value will be saved and loaded.
 func register_field(key: String, value: Variant) -> void:
@@ -58,10 +46,18 @@ func handle_destroyed(data: Dictionary) -> bool:
 
 	return destroyed
 
-## Serialise the saved fields.
-func get_saved_object_data() -> Array:
-	return _saved_fields.keys().map(
-	func (key: String):
-		var value = _saved_fields[key]
-		return {key = key, value = str(value), type = str(typeof(value))}
-	)
+## Ensure the data is up-to-date and return the serialised saved fields.
+func get_latest_data() -> Array[Dictionary]:
+	register_fields()
+
+	var data: Array[Dictionary] = []
+	data.assign(_saved_fields.keys().map(
+		func(key: String):
+			var value = _saved_fields[key]
+			return {
+				key = key,
+				value = var_to_str(value),
+				type = str(typeof(value))
+			}
+	))
+	return data

@@ -1,32 +1,36 @@
-class_name TaloSessionManager extends Node
+class_name TaloSessionManager extends RefCounted
 
-var _config_file_path = "user://talo_session.cfg"
-var _verification_alias_id = ""
+var _verification_alias_id: int
 
-func _load_config() -> ConfigFile:
-	var config = ConfigFile.new()
-	config.load(_config_file_path)
+const _SESSION_CONFIG_PATH = "user://talo_session.cfg"
+
+func _load_config(path: String) -> ConfigFile:
+	var config := ConfigFile.new()
+	config.load(path)
 	return config
 
 func _save_session(session_token: String) -> void:
-	var config = ConfigFile.new()
+	var config := ConfigFile.new()
 	config.set_value("session", "token", session_token)
 	config.set_value("session", "identifier", Talo.current_alias.identifier)
-	config.save(_config_file_path)
+	config.save(_SESSION_CONFIG_PATH)
 
 func clear_session() -> void:
-	var config = _load_config()
+	Talo.current_alias = null
+	Talo.socket.reset_connection()
+
+	var config := _load_config(_SESSION_CONFIG_PATH)
 
 	if config.has_section("session"):
 		config.erase_section("session")
-		config.save(_config_file_path)
+		config.save(_SESSION_CONFIG_PATH)
 
-func load_session() -> String:
-	var config = _load_config()
+func get_token() -> String:
+	var config := _load_config(_SESSION_CONFIG_PATH)
 	return config.get_value("session", "token", "")
 
 func get_identifier() -> String:
-	var config = _load_config()
+	var config := _load_config(_SESSION_CONFIG_PATH)
 	return config.get_value("session", "identifier", "")
 
 func save_verification_alias_id(alias_id: int) -> void:
@@ -35,7 +39,11 @@ func save_verification_alias_id(alias_id: int) -> void:
 func get_verification_alias_id() -> int:
 	return _verification_alias_id
 
-func handle_session_created(alias: Dictionary, session_token: String) -> void:
+func handle_session_created(alias: Dictionary, session_token: String, socket_token: String) -> void:
 	Talo.current_alias = TaloPlayerAlias.new(alias)
 	Talo.players.identified.emit(Talo.current_player)
 	_save_session(session_token)
+	Talo.socket.set_socket_token(socket_token)
+
+func check_for_session() -> bool:
+	return not get_token().is_empty()
