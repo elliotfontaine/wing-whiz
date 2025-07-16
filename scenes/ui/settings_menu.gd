@@ -68,7 +68,6 @@ func choose_account_tab() -> void:
 		account_tab_container.find_child("UsernameDisplay", true).text = Talo.current_alias.identifier
 	else:
 		account_tab_container.current_tab = AccountTabs.LOG_IN
-		Talo._check_session()
 
 func _on_player_identified(player) -> void:
 	account_tab_container.current_tab = AccountTabs.PLAYER_CARD
