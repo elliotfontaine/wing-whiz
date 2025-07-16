@@ -36,7 +36,6 @@ func _on_play_pressed() -> void:
 func _on_settings_pressed() -> void:
 	var settings_instance = settings.instantiate()
 	$UI.add_child(settings_instance)
-	
 
 func _on_ratio_changed(ratio) -> void:
 	if ratio < 0.8:
