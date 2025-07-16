@@ -42,24 +42,21 @@ func _ready() -> void:
 	logout_button.pressed.connect(_on_logout_pressed)
 	to_login_button.pressed.connect(_on_to_login_pressed)
 	to_signup_button.pressed.connect(_on_to_signup_pressed)
-	Talo.players.identified.connect(func(player): _on_player_identified(player))
+	Talo.players.identified.connect(_on_player_identified)
 	choose_account_tab()
 	
 	ResponsiveUI.ratio_changed.connect(_on_ratio_changed)
 	_on_ratio_changed(ResponsiveUI.ratio)
 	animation_player.play("appear")
 
-
 func _on_close_pressed() -> void:
 	animation_player.play_backwards("appear")
 	await animation_player.animation_finished
 	queue_free()
 
-
 func _on_tab_changed(tab: int) -> void:
 	if tab == 1:
 		choose_account_tab()
-
 
 func choose_account_tab() -> void:
 	if Talo.identity_check(false) == OK:
@@ -69,7 +66,7 @@ func choose_account_tab() -> void:
 	else:
 		account_tab_container.current_tab = AccountTabs.LOG_IN
 
-func _on_player_identified(player) -> void:
+func _on_player_identified(_player) -> void:
 	account_tab_container.current_tab = AccountTabs.PLAYER_CARD
 	signup_form.cleanup_form()
 	login_form.cleanup_form()
