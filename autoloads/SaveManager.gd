@@ -4,12 +4,12 @@ var save_path: String = "user://save.dat"
 var save = ConfigFile.new()
 
 # Score
-var best_score: int:
-	set(new_record):
-		save.set_value("score", "best_score", new_record)
+var highscore: int:
+	set(new):
+		save.set_value("progress", "highscore", new)
 		save.save(save_path)
 	get:
-		return save.get_value("score", "best_score", 0)
+		return save.get_value("progress", "highscore", 0)
 
 # Settings
 var volume_global: float:
@@ -49,7 +49,7 @@ func _load_save() -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(volume_sfx))
 
 func _create_default_save() -> void:
-	save.set_value("score", "best_score", 0)
+	save.set_value("progress", "highscore", 0)
 	save.set_value("settings", "volume_global", 1.0)
 	save.set_value("settings", "volume_music", 1.0)
 	save.set_value("settings", "volume_sfx", 1.0)

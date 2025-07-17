@@ -1,8 +1,7 @@
 extends Control
 
-const BEST_SCORE_TEMPLATE := "[right]%s[/right]"
-#const NEW_BEST_SCORE_TEMPLATE := "[right][rainbow sat=0.6 val=0.9][wave amp=15.0 freq=7.0]New [/wave][/rainbow]%s[/right]"
-const NEW_BEST_SCORE_SHORT_TEMPLATE := "[right][rainbow sat=0.6 val=0.9][wave amp=15.0 freq=5.0]%s[/wave][/rainbow][/right]"
+const HIGHSCORE_TEMPLATE := "[right]%s[/right]"
+const NEW_HIGHSCORE_SHORT_TEMPLATE := "[right][rainbow sat=0.6 val=0.9][wave amp=15.0 freq=5.0]%s[/wave][/rainbow][/right]"
 
 const THRESHOLDS := {
 	"bronze": 10,
@@ -18,7 +17,6 @@ const TWITTER_SHARE_URL := "https://twitter.com/intent/tweet?text="
 var TWITTER_SHARE_TEMPLATE := "✨ I achieved a score of %s in Wing Whiz ! ✨\n
 Download or Play the game at{itch}".format({"itch": Globals.ITCHIO_URL})
 
-#TODO: replace with other medals when assets are made
 var medal_textures := {
 	"bronze": preload("res://assets/ui/medals/medal_V4_bronze.png"),
 	"silver": preload("res://assets/ui/medals/medal_V4_silver.png"),
@@ -34,7 +32,7 @@ var game_over_textures = {
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var medal: TextureRect = %Medal
 @onready var score_label: Label = %Score
-@onready var best_label := %Best
+@onready var highscore_label := %Best
 @onready var retry_button: Button = %RetryButton
 @onready var home_button: Button = %HomeButton
 @onready var share_button: Button = %ShareButton
@@ -49,8 +47,8 @@ func _ready() -> void:
 	ResponsiveUI.ratio_changed.connect(_on_ratio_changed)
 	_on_ratio_changed(ResponsiveUI.ratio)
 
-func appear(new_score: int, previous_best_score: int) -> void:
-	best_label.text = BEST_SCORE_TEMPLATE % previous_best_score
+func appear(new_score: int, previous_highscore: int) -> void:
+	highscore_label.text = HIGHSCORE_TEMPLATE % previous_highscore
 	share_button.pressed.connect(_on_share_pressed.bind(new_score))
 	animation_player.play("appear")
 	var score_tween := score_label.create_tween().set_trans(Tween.TRANS_QUAD)
@@ -59,12 +57,12 @@ func appear(new_score: int, previous_best_score: int) -> void:
 	animation_player.play("idle")
 	
 	await score_tween.finished
-	if new_score > previous_best_score:
-		var record_tween := best_label.create_tween().set_trans(Tween.TRANS_QUAD)
-		best_label.text = NEW_BEST_SCORE_SHORT_TEMPLATE % new_score
-		best_label.pivot_offset = best_label.size / 2
-		best_label.scale *= 5
-		record_tween.tween_property(best_label, "scale", best_label.scale / 5, 0.4)
+	if new_score > previous_highscore:
+		var record_tween := highscore_label.create_tween().set_trans(Tween.TRANS_QUAD)
+		highscore_label.text = NEW_HIGHSCORE_SHORT_TEMPLATE % new_score
+		highscore_label.pivot_offset = highscore_label.size / 2
+		highscore_label.scale *= 5
+		record_tween.tween_property(highscore_label, "scale", highscore_label.scale / 5, 0.4)
 	update_medal(new_score)
 
 func _update_score(new_score: int):
@@ -72,7 +70,6 @@ func _update_score(new_score: int):
 		score_label.text = str(new_score)
 		score_up_sound.pitch_scale += 0.005
 		score_up_sound.play()
-
 
 func update_medal(score: int) -> void:
 	var new_medal = null

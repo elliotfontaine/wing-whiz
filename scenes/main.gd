@@ -35,7 +35,7 @@ var get_ready_textures = {
 @onready var shaker_component2d: ShakerComponent2D = %ShakerComponent2D
 @onready var ground_body: PhysicsBody2D = %GroundSB2D
 @onready var flash: ColorRect = %Flash
-@onready var best_score = SaveManager.best_score
+@onready var highscore = SaveManager.highscore
 @onready var camera_player_offset: Vector2 = camera.position - player.position
 @onready var PlayerStates = player.States
 
@@ -165,6 +165,6 @@ func _on_player_state_changed(new_state) -> void:
 			shaker_component2d.play_shake()
 			flash_screen()
 			await get_tree().create_timer(0.8).timeout
-			game_over_menu.appear(score, best_score)
-			if score > best_score:
-				SaveManager.best_score = score
+			game_over_menu.appear(score, highscore)
+			if score > highscore:
+				SaveManager.highscore = score
