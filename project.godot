@@ -25,9 +25,10 @@ DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 Shaker="*res://addons/shaker/src/Shaker.gd"
 Globals="*res://autoloads/Globals.gd"
 SceneChanger="*res://autoloads/SceneChanger.tscn"
-SaveManager="*res://autoloads/SaveManager.gd"
+GameSaveManager="*res://autoloads/GameSaveManager.gd"
 ResponsiveUI="*res://autoloads/ResponsiveUI.gd"
 Talo="*res://addons/talo/talo_manager.gd"
+GameSettingsManager="*res://autoloads/GameSettingsManager.gd"
 
 [display]
 

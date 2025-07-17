@@ -9,10 +9,10 @@ enum AudioBus {Master = 0}
 func _ready() -> void:
     value_changed.connect(_on_value_changed)
     if !Engine.is_editor_hint():
-        value = SaveManager.get("volume_" + bus_name.to_lower())
+        value = GameSettingsManager.get("volume_" + bus_name.to_lower())
 
 func _on_value_changed(new_value: float) -> void:
-    SaveManager.set("volume_" + bus_name.to_lower(), new_value)
+    GameSettingsManager.set("volume_" + bus_name.to_lower(), new_value)
 
 func _validate_property(property: Dictionary):
     if property.name == "audio_bus":
@@ -25,7 +25,7 @@ func _validate_property(property: Dictionary):
             options += busName
         property.hint_string = options
 
-## The following is portable (doesn't depend on the SaveManager autoload)
+## The following version is portable (doesn't depend on the GameSettingsManager autoload)
 
 # @tool
 # extends HSlider
