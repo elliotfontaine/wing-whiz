@@ -1,0 +1,10 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://cesbpk1k43cla"]
+
+[ext_resource type="Texture2D" uid="uid://b7m36lng4a7bx" path="res://assets/ui/components/leaderboard_entries/list/entry_middle.png" id="1_nhvx0"]
+
+[resource]
+texture = ExtResource("1_nhvx0")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0

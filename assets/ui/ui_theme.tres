@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=19 format=3 uid="uid://chu8dr8oafu2f"]
+[gd_resource type="Theme" load_steps=21 format=3 uid="uid://chu8dr8oafu2f"]
 
 [ext_resource type="StyleBox" uid="uid://dgn7f16fsw82p" path="res://assets/ui/components/buttons/flat_button_stylebox.tres" id="1_aqwjt"]
 [ext_resource type="StyleBox" uid="uid://lj257agsoc2b" path="res://assets/ui/components/panels/panel_stylebox.tres" id="1_mq5kr"]
@@ -46,6 +46,10 @@ bg_color = Color(0, 0, 0, 0.505882)
 expand_margin_left = 3.0
 expand_margin_right = 3.0
 expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iox8e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7mtqn"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_mj657"]
 color = Color(0.588235, 0.423529, 0.423529, 1)
@@ -107,5 +111,7 @@ TabContainer/styles/panel = ExtResource("1_mq5kr")
 TabContainer/styles/tab_hovered = ExtResource("4_rsq7f")
 TabContainer/styles/tab_selected = ExtResource("5_3hhba")
 TabContainer/styles/tab_unselected = ExtResource("4_rsq7f")
+VScrollBar/styles/grabber = SubResource("StyleBoxEmpty_iox8e")
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_7mtqn")
 VSeparator/constants/separation = 0
 VSeparator/styles/separator = SubResource("StyleBoxLine_mj657")
