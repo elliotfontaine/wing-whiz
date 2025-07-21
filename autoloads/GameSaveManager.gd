@@ -1,31 +1,83 @@
 extends Node
 
-const save_path: String = "user://save.dat"
+enum SaveTypes {GUEST, TALO}
 
-var save: ConfigFile = ConfigFile.new()
+const _GUEST_SAVE_PATH: String = "user://guest_save.ini"
+const _TALO_SAVE_PATH: String = "user://talo_save.ini"
+const SAVE_PATHS: Dictionary = {SaveTypes.GUEST: _GUEST_SAVE_PATH, SaveTypes.TALO: _TALO_SAVE_PATH}
 
-# Score
-var highscore: int:
+const _DEFAULT_GUEST_SAVE: String = "res://autoloads/default_guest_save.ini"
+const _DEFAULT_TALO_SAVE: String = "res://autoloads/default_talo_save.ini"
+
+var current_save_type: SaveTypes
+var current_save: ConfigFile
+
+var username: String:
+	get: return _username
 	set(new):
-		if new <= highscore:
-			return
-		save.set_value("progress", "highscore", new)
-		save.save(save_path)
-		var _res: LeaderboardsAPI.AddEntryResult = await Talo.leaderboards.add_entry("global", new)
-	get:
-		return save.get_value("progress", "highscore", 0)
+		print_debug("You shouldn't try to manually set username")
+		return
+
+var _username: String:
+	get: return _prop_getter("meta", "username")
+	set(new): _prop_setter("meta", "username", new)
+
+var highscore: int:
+	get: return _prop_getter("progress", "highscore")
+	set(new): _prop_setter("progress", "highscore", new, func(x): return x > highscore)
+
+var coins: int:
+	get: return _prop_getter("progress", "coins")
+	set(new): _prop_setter("progress", "coins", new, func(x): return x >= 0)
+
+var total_exp: int:
+	get: return _prop_getter("progress", "total_exp")
+	set(new): _prop_setter("progress", "total_exp", new, func(x): return x >= 0)
+
+var current_theme: int:
+	get: return _prop_getter("progress", "current_theme")
+	set(new): _prop_setter("progress", "current_theme", new)
+
+var current_skin: int:
+	get: return _prop_getter("progress", "current_skin")
+	set(new): _prop_setter("progress", "current_skin", new)
 
 func _ready() -> void:
-	if !FileAccess.file_exists(save_path):
-		print("No save file. Creating new one.")
-		_create_default_save()
+	_load_current_save()
+	_sync_with_remote()
+
+func _load_current_save() -> void:
+	current_save = ConfigFile.new()
+
+	if FileAccess.file_exists(SAVE_PATHS[SaveTypes.TALO]):
+		current_save_type = SaveTypes.TALO
+	elif FileAccess.file_exists(SAVE_PATHS[SaveTypes.GUEST]):
+		current_save_type = SaveTypes.GUEST
 	else:
-		print("Existing save file at: ", save_path)
-	_load_save()
+		current_save_type = SaveTypes.GUEST
+		_initialize_guest_save()
+	
+	current_save.load(SAVE_PATHS[current_save_type])
 
-func _load_save() -> void:
-	save.load(save_path)
+func _initialize_guest_save() -> void:
+	current_save.load(_DEFAULT_GUEST_SAVE)
+	_username = generate_guest_username()
 
-func _create_default_save() -> void:
-	save.set_value("progress", "highscore", 0)
-	save.save(save_path)
+func _sync_with_remote() -> void:
+	# TODO: implement
+	return
+
+func generate_guest_username() -> String:
+	var device_id = OS.get_unique_id()
+	var hash_suffix = String.num_int64(device_id.hash(), 16).pad_zeros(6).substr(0, 6)
+	return "Guest#" + hash_suffix
+
+func _prop_setter(section: String, key: String, new_value, condition: Callable = Callable()) -> void:
+	if condition.is_valid() and not condition.call(new_value):
+		return
+	current_save.set_value(section, key, new_value)
+	current_save.save(SAVE_PATHS[current_save_type])
+	_sync_with_remote()
+
+func _prop_getter(section: String, key: String, default: Variant = null) -> Variant:
+	return current_save.get_value(section, key, default)

@@ -75,7 +75,7 @@ func _cache_entries() -> void:
 			_entries_error = true
 
 func _load_current_player_entry() -> void:
-	current_player_entry.set_username("")
+	current_player_entry.set_username(GameSaveManager.username)
 	current_player_entry.set_score(GameSaveManager.highscore)
 
 func _on_close_pressed() -> void:

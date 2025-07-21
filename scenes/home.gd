@@ -17,6 +17,7 @@ var game_title_textures = {
 @onready var settings_button: Button = %SettingsButton
 @onready var leaderboard_button: Button = %LeaderboardButton
 @onready var title: TextureRect = %Title
+@onready var username_label: Label = %UsernameLabel
 @onready var camera_player_offset = camera.position.x - player.position.x
 
 func _ready() -> void:
@@ -24,7 +25,9 @@ func _ready() -> void:
 	settings_button.pressed.connect(_on_settings_pressed)
 	leaderboard_button.pressed.connect(_on_leaderboard_pressed)
 	ResponsiveUI.ratio_changed.connect(_on_ratio_changed)
+	GameSaveManager.ready.connect(_on_save_loaded)
 	_on_ratio_changed(ResponsiveUI.ratio)
+	_on_save_loaded()
 	player.state = player.States.AUTO
 
 func _physics_process(delta: float) -> void:
@@ -43,6 +46,9 @@ func _on_settings_pressed() -> void:
 func _on_leaderboard_pressed() -> void:
 	var leaderboard_instance = leaderboard.instantiate()
 	$UI.add_child(leaderboard_instance)
+
+func _on_save_loaded() -> void:
+	username_label.text = GameSaveManager.username
 
 func _on_ratio_changed(ratio) -> void:
 	if ratio < 0.8:

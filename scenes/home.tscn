@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://qepiltkccigy"]
+[gd_scene load_steps=14 format=3 uid="uid://qepiltkccigy"]
 
 [ext_resource type="Script" path="res://scenes/home.gd" id="1_3v128"]
 [ext_resource type="PackedScene" uid="uid://dqn6nxqgjp5v1" path="res://scenes/ui/settings_menu.tscn" id="2_7in55"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://classes/SoundButton.gd" id="8_6jo47"]
 [ext_resource type="PackedScene" uid="uid://38vvjgmqvsgo" path="res://scenes/parallax_background.tscn" id="8_poabo"]
 [ext_resource type="PackedScene" uid="uid://dkhuv62ytrwfk" path="res://scenes/parallax_foreground.tscn" id="9_y7uro"]
+[ext_resource type="FontFile" uid="uid://brdrlkrjaaxk4" path="res://assets/ui/font/m5x7.ttf" id="11_1ards"]
 
 [node name="Home" type="Node"]
 script = ExtResource("1_3v128")
@@ -104,6 +105,28 @@ scale = Vector2(5, 5)
 pivot_offset = Vector2(78, 20)
 texture = ExtResource("5_kqgwt")
 stretch_mode = 5
+
+[node name="CurrentUser" type="HBoxContainer" parent="UI"]
+anchors_preset = -1
+anchor_left = 0.98
+anchor_top = 0.98
+anchor_right = 0.98
+anchor_bottom = 0.98
+offset_left = -41.8
+offset_top = -64.4
+offset_right = 0.199951
+offset_bottom = -0.400024
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="UsernameLabel" type="Label" parent="UI/CurrentUser"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = ExtResource("11_1ards")
+theme_override_font_sizes/font_size = 80
+text = "Username"
+horizontal_alignment = 2
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("8_poabo")]
 
