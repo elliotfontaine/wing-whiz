@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://36drjp23enxm"]
+
+[ext_resource type="Script" path="res://scenes/ui/leaderboard_entry.gd" id="1_jw18j"]
+[ext_resource type="FontFile" uid="uid://brdrlkrjaaxk4" path="res://assets/ui/font/m5x7.ttf" id="1_wkhux"]
+[ext_resource type="StyleBox" uid="uid://bu4xbii5dqqgr" path="res://assets/ui/components/leaderboard_entries/list/entry_left_stylebox.tres" id="2_1c0ro"]
+[ext_resource type="StyleBox" uid="uid://cesbpk1k43cla" path="res://assets/ui/components/leaderboard_entries/list/entry_middle_stylebox.tres" id="3_eosjg"]
+[ext_resource type="StyleBox" uid="uid://cfd7qqg6ep53e" path="res://assets/ui/components/leaderboard_entries/list/entry_right_stylebox.tres" id="4_v44nn"]
+
+[node name="LeaderboardEntry" type="HBoxContainer"]
+offset_right = 125.0
+offset_bottom = 17.0
+theme_override_constants/separation = 0
+script = ExtResource("1_jw18j")
+
+[node name="Rank" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(18, 0)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.243137, 0.207843, 0.27451, 1)
+theme_override_fonts/font = ExtResource("1_wkhux")
+theme_override_styles/normal = ExtResource("2_1c0ro")
+text = "NA"
+horizontal_alignment = 2
+
+[node name="Username" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.282353, 0.290196, 0.466667, 1)
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("1_wkhux")
+theme_override_styles/normal = ExtResource("3_eosjg")
+text = "Username"
+clip_text = true
+
+[node name="Score" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.243137, 0.207843, 0.27451, 1)
+theme_override_fonts/font = ExtResource("1_wkhux")
+theme_override_styles/normal = ExtResource("4_v44nn")
+text = "0"
+horizontal_alignment = 2

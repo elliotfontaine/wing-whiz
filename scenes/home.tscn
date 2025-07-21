@@ -1,12 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://qepiltkccigy"]
+[gd_scene load_steps=13 format=3 uid="uid://qepiltkccigy"]
 
 [ext_resource type="Script" path="res://scenes/home.gd" id="1_3v128"]
 [ext_resource type="PackedScene" uid="uid://dqn6nxqgjp5v1" path="res://scenes/ui/settings_menu.tscn" id="2_7in55"]
 [ext_resource type="AudioStream" uid="uid://dq85rhuwih1oa" path="res://assets/audio/music/2014 07_ Clement Panchout_ Partycles OST_ Cheerful Title Screen.wav" id="2_gr1kj"]
+[ext_resource type="PackedScene" uid="uid://crom3kqhppamr" path="res://scenes/ui/leaderboard.tscn" id="4_4y8lp"]
 [ext_resource type="PackedScene" uid="uid://dxrvyg2gkpkyn" path="res://scenes/player.tscn" id="5_6675b"]
 [ext_resource type="Texture2D" uid="uid://bs6mum74g8cb6" path="res://assets/ui/icons/play_icon.png" id="5_ihmwa"]
 [ext_resource type="Texture2D" uid="uid://cxgjldiien6it" path="res://assets/ui/titles/wing_whiz.png" id="5_kqgwt"]
 [ext_resource type="Texture2D" uid="uid://ctkkbm8jfha5w" path="res://assets/ui/icons/options_icon.png" id="6_7t71t"]
+[ext_resource type="Texture2D" uid="uid://dp03yphtygwfo" path="res://assets/ui/icons/leaderboard_icon.png" id="7_uon1m"]
 [ext_resource type="Script" path="res://classes/SoundButton.gd" id="8_6jo47"]
 [ext_resource type="PackedScene" uid="uid://38vvjgmqvsgo" path="res://scenes/parallax_background.tscn" id="8_poabo"]
 [ext_resource type="PackedScene" uid="uid://dkhuv62ytrwfk" path="res://scenes/parallax_foreground.tscn" id="9_y7uro"]
@@ -16,6 +18,7 @@ script = ExtResource("1_3v128")
 background_music = ExtResource("2_gr1kj")
 play_scene = 1
 settings = ExtResource("2_7in55")
+leaderboard = ExtResource("4_4y8lp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
@@ -31,15 +34,15 @@ layer = 2
 
 [node name="MainMenu" type="PanelContainer" parent="UI"]
 unique_name_in_owner = true
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.755
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -45.0
-offset_top = 311.5
-offset_right = 47.0
-offset_bottom = 408.5
+anchor_bottom = 0.755
+offset_left = -44.0
+offset_top = -46.5
+offset_right = 44.0
+offset_bottom = 46.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(5, 5)
@@ -65,7 +68,20 @@ alignment = 0
 icon_alignment = 2
 script = ExtResource("8_6jo47")
 
-[node name="SettingsButton" type="Button" parent="UI/MainMenu/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LeaderboardButton" type="Button" parent="UI/MainMenu/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("7_uon1m")
+script = ExtResource("8_6jo47")
+
+[node name="SettingsButton" type="Button" parent="UI/MainMenu/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -73,10 +89,6 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 icon = ExtResource("6_7t71t")
 script = ExtResource("8_6jo47")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainMenu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
 
 [node name="Title" type="TextureRect" parent="UI"]
 unique_name_in_owner = true

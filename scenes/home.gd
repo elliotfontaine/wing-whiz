@@ -3,6 +3,7 @@ extends Node
 @export var background_music: AudioStream
 @export var play_scene: SceneChanger.MainScenes
 @export var settings: PackedScene
+@export var leaderboard: PackedScene
 
 var game_title_textures = {
 	"long": preload("res://assets/ui/titles/wing_whiz.png"),
@@ -14,12 +15,14 @@ var game_title_textures = {
 @onready var main_menu: PanelContainer = %MainMenu
 @onready var play_button: Button = %PlayButton
 @onready var settings_button: Button = %SettingsButton
+@onready var leaderboard_button: Button = %LeaderboardButton
 @onready var title: TextureRect = %Title
 @onready var camera_player_offset = camera.position.x - player.position.x
 
 func _ready() -> void:
 	play_button.pressed.connect(_on_play_pressed)
 	settings_button.pressed.connect(_on_settings_pressed)
+	leaderboard_button.pressed.connect(_on_leaderboard_pressed)
 	ResponsiveUI.ratio_changed.connect(_on_ratio_changed)
 	_on_ratio_changed(ResponsiveUI.ratio)
 	player.state = player.States.AUTO
@@ -37,11 +40,14 @@ func _on_settings_pressed() -> void:
 	var settings_instance = settings.instantiate()
 	$UI.add_child(settings_instance)
 
+func _on_leaderboard_pressed() -> void:
+	var leaderboard_instance = leaderboard.instantiate()
+	$UI.add_child(leaderboard_instance)
+
 func _on_ratio_changed(ratio) -> void:
 	if ratio < 0.8:
 		camera.zoom = Vector2(1.4, 1.4)
 		main_menu.scale = Vector2(7.0, 7.0)
-		#score_label.scale = Vector2(15, 15)
 		title.scale = Vector2(7.0, 7.0)
 		title.texture = game_title_textures["short"]
 	else:
