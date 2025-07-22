@@ -21,6 +21,8 @@ func _ready() -> void:
 	_on_ratio_changed(ResponsiveUI.ratio)
 	_load_current_player_entry()
 	animation_player.play("appear")
+	_build_entry_list() # will show cache if already present
+
 	await _cache_entries()
 	_build_entry_list()
 
@@ -32,9 +34,12 @@ func _add_negative_space() -> void:
 
 func _build_entry_list() -> void:
 	var talo_entries: Array[TaloLeaderboardEntry] = Talo.leaderboards.get_cached_entries(leaderboard_internal_name)
-	if talo_entries.is_empty():
-		print("could not retrieve leaderboard")
+	if talo_entries.is_empty() or talo_entries.size() == 1:
+		print("cache is empty")
 		return
+	
+	for child in entries_container.get_children():
+		child.queue_free()
 	
 	_add_negative_space()
 	for talo_entry in talo_entries:
@@ -75,6 +80,7 @@ func _cache_entries() -> void:
 			_entries_error = true
 
 func _load_current_player_entry() -> void:
+	current_player_entry.set_rank("?")
 	current_player_entry.set_username(GameSaveManager.username)
 	current_player_entry.set_score(GameSaveManager.highscore)
 

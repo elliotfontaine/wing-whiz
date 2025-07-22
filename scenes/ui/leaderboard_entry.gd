@@ -1,6 +1,6 @@
 extends HBoxContainer
 
-func set_rank(new_value: int) -> void:
+func set_rank(new_value) -> void:
 	%Rank.text = str(new_value)
 
 func set_username(new_value: String) -> void:
