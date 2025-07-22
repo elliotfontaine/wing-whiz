@@ -44,6 +44,7 @@ var current_skin: int:
 
 func _ready() -> void:
 	_load_current_save()
+	await Talo.init_completed
 	_sync_with_remote()
 
 func _load_current_save() -> void:
@@ -64,13 +65,29 @@ func _initialize_guest_save() -> void:
 	_username = generate_guest_username()
 
 func _sync_with_remote() -> void:
+	var player: TaloPlayer
+
+	if Talo.identity_check(false) != OK:
+		var service := "talo" if current_save_type == SaveTypes.TALO else "username"
+		player = await Talo.players.identify(service, username)
+		if player == null:
+			return
+
+	push_high_score("global", highscore)
+	_sync_decision_tree()
+
+func _sync_decision_tree() -> void:
 	# TODO: implement
 	return
 
 func generate_guest_username() -> String:
 	var device_id = OS.get_unique_id()
 	var hash_suffix = String.num_int64(device_id.hash(), 16).pad_zeros(6).substr(0, 6)
-	return "Guest#" + hash_suffix
+	return "Guest_" + hash_suffix
+
+func push_high_score(leaderboard_internal_name: String, score: int) -> void:
+	var res := await Talo.leaderboards.add_entry(leaderboard_internal_name, score)
+	assert(is_instance_valid(res))
 
 func _prop_setter(section: String, key: String, new_value, condition: Callable = Callable()) -> void:
 	if condition.is_valid() and not condition.call(new_value):
