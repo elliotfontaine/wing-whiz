@@ -1,13 +1,13 @@
 extends Node
 
-enum SaveTypes {GUEST, TALO}
+enum SaveTypes {GUEST, AUTH}
 
 const _GUEST_SAVE_PATH: String = "user://guest_save.ini"
-const _TALO_SAVE_PATH: String = "user://talo_save.ini"
-const SAVE_PATHS: Dictionary = {SaveTypes.GUEST: _GUEST_SAVE_PATH, SaveTypes.TALO: _TALO_SAVE_PATH}
+const _AUTH_SAVE_PATH: String = "user://auth_save.ini"
+const SAVE_PATHS: Dictionary = {SaveTypes.GUEST: _GUEST_SAVE_PATH, SaveTypes.AUTH: _AUTH_SAVE_PATH}
 
 const _DEFAULT_GUEST_SAVE: String = "res://autoloads/default_guest_save.ini"
-const _DEFAULT_TALO_SAVE: String = "res://autoloads/default_talo_save.ini"
+const _DEFAULT_AUTH_SAVE: String = "res://autoloads/default_auth_save.ini"
 
 var current_save_type: SaveTypes
 var current_save: ConfigFile
@@ -34,24 +34,23 @@ var total_exp: int:
 	get: return _prop_getter("progress", "total_exp")
 	set(new): _prop_setter("progress", "total_exp", new, func(x): return x >= 0)
 
-var current_theme: int:
+var current_theme: String:
 	get: return _prop_getter("progress", "current_theme")
 	set(new): _prop_setter("progress", "current_theme", new)
 
-var current_skin: int:
+var current_skin: String:
 	get: return _prop_getter("progress", "current_skin")
 	set(new): _prop_setter("progress", "current_skin", new)
 
 func _ready() -> void:
 	_load_current_save()
-	await Talo.init_completed
 	_sync_with_remote()
 
 func _load_current_save() -> void:
 	current_save = ConfigFile.new()
 
-	if FileAccess.file_exists(SAVE_PATHS[SaveTypes.TALO]):
-		current_save_type = SaveTypes.TALO
+	if FileAccess.file_exists(SAVE_PATHS[SaveTypes.AUTH]):
+		current_save_type = SaveTypes.AUTH
 	elif FileAccess.file_exists(SAVE_PATHS[SaveTypes.GUEST]):
 		current_save_type = SaveTypes.GUEST
 	else:
@@ -64,11 +63,15 @@ func _initialize_guest_save() -> void:
 	current_save.load(_DEFAULT_GUEST_SAVE)
 	_username = generate_guest_username()
 
+func _initialize_talo_save() -> void:
+	current_save.load(_DEFAULT_AUTH_SAVE)
+	_username = Talo.current_player.identifier
+
 func _sync_with_remote() -> void:
 	var player: TaloPlayer
 
 	if Talo.identity_check(false) != OK:
-		var service := "talo" if current_save_type == SaveTypes.TALO else "username"
+		var service := "talo" if current_save_type == SaveTypes.AUTH else "username"
 		player = await Talo.players.identify(service, username)
 		if player == null:
 			return
